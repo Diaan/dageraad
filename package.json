@@ -1,0 +1,26 @@
+{
+  "name": "dageraad",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Stencil App Starter",
+  "scripts": {
+    "build": "stencil build",
+    "start": "stencil build --dev --watch --serve",
+    "test": "stencil test --spec --e2e",
+    "test.watch": "stencil test --spec --e2e --watchAll"
+  },
+  "dependencies": {
+    "@stencil/core": "~0.17.0",
+    "@stencil/router": "~0.3.2"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@stencil/sass": "^0.1.1",
+    "@types/jest": "23.3.14",
+    "@types/puppeteer": "1.12.1",
+    "jest": "23.6.0",
+    "jest-cli": "23.6.0",
+    "puppeteer": "1.11.0",
+    "workbox-build": "3.4.1"
+  }
+}
