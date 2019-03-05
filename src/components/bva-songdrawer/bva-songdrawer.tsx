@@ -1,4 +1,4 @@
-import { Component, Prop } from '@stencil/core';
+import { Component, Prop, EventEmitter, Event } from '@stencil/core';
 
 
 @Component({
@@ -8,16 +8,17 @@ import { Component, Prop } from '@stencil/core';
 export class BvaSongdrawer {
 
   @Prop({ mutable: true }) song: string;
+  @Event() closeDrawer: EventEmitter;
 
   closeHandler() {
-
+    this.closeDrawer.emit();
   }
 
   render() {
     return (
       <div>
         <p>Hello BvaSongdrawer! {this.song}</p>
-        <button onClick={this.closeHandler.bind(this, 'song1')}>close</button>
+        <button onClick={this.closeHandler.bind(this)}>close</button>
       </div>
     );
   }

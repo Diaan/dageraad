@@ -11,13 +11,22 @@ import '@stencil/router';
 import '@stencil/state-tunnel';
 import {
   MatchResults,
+  RouterHistory,
 } from '@stencil/router';
 
 
 export namespace Components {
 
-  interface AppHome {}
-  interface AppHomeAttributes extends StencilHTMLAttributes {}
+  interface AppHome {
+    'activeSong': any;
+    'history': RouterHistory;
+    'match': MatchResults;
+  }
+  interface AppHomeAttributes extends StencilHTMLAttributes {
+    'activeSong'?: any;
+    'history'?: RouterHistory;
+    'match'?: MatchResults;
+  }
 
   interface AppProfile {
     'match': MatchResults;
@@ -37,6 +46,7 @@ export namespace Components {
     'song': string;
   }
   interface BvaSongdrawerAttributes extends StencilHTMLAttributes {
+    'onCloseDrawer'?: (event: CustomEvent) => void;
     'song'?: string;
   }
 

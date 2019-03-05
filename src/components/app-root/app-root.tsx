@@ -15,26 +15,14 @@ export class AppRoot {
   }
 
   render() {
-
-    let drawer = null;
-    if (this.activeSong) {
-      drawer = [
-        <bva-songdrawer song={this.activeSong}></bva-songdrawer>
-      ];
-    }
-
-
+    console.log('render app-root');
     return (
-      // <stencil-router>
-      //   <stencil-route-switch scrollTopOffset={0}>
-      //     <stencil-route url='/' component='app-home' exact={true} />
-      //     <stencil-route url='/wheel' component='bva-wheel' exact={true} />
-      //   </stencil-route-switch>
-      // </stencil-router>
-      [
-        <bva-wheel></bva-wheel>,
-        drawer
-      ]
+      <stencil-router>
+        <stencil-route-switch scrollTopOffset={0}>
+          <stencil-route url='/' component='app-home' exact={true} />
+          <stencil-route url={['/', '/song/:title']} component='app-home' exact={true} />
+        </stencil-route-switch>
+      </stencil-router>
     );
   }
 }

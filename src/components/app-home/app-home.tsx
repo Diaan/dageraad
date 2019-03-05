@@ -1,4 +1,5 @@
-import { Component } from '@stencil/core';
+import { Component, Prop, Listen } from '@stencil/core';
+import { RouterHistory, MatchResults } from '@stencil/router';
 
 @Component({
   tag: 'app-home',
@@ -6,29 +7,35 @@ import { Component } from '@stencil/core';
   shadow: true
 })
 export class AppHome {
+  @Prop({ mutable: true }) activeSong = null;
+  @Prop() history: RouterHistory;
+  @Prop() match: MatchResults;
+
+  @Listen('openSong')
+  openSongHandler(song) {
+    this.history.push(`/song/${song.detail}`, {});
+    this.activeSong = song.detail;
+  }
+
+  @Listen('closeDrawer')
+  closeDrawerHandler() {
+    this.history.push(`/`, {});
+    this.activeSong = null;
+  }
 
   render() {
+    let drawer = null;
+    if (this.match.params.title) {
+      drawer = [
+        <bva-songdrawer song={this.match.params.title}></bva-songdrawer>
+      ];
+    }
+
     return (
-      <div class='app-home'>
-        <p>
-          Welcome to the Stencil App Starter.
-          You can use this starter to build entire apps all with
-          web components using Stencil!
-          Check out our docs on <a href='https://stenciljs.com'>stenciljs.com</a> to get started.
-        </p>
-
-        <stencil-route-link url='/profile/stencil'>
-          <button>
-            Profile page
-          </button>
-        </stencil-route-link>
-
-        <stencil-route-link url='/wheel'>
-          <button>
-            wheel
-          </button>
-        </stencil-route-link>
-      </div>
+      [
+        <bva-wheel></bva-wheel>,
+        drawer
+      ]
     );
   }
 }

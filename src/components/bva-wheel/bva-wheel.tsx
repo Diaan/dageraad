@@ -35,7 +35,7 @@ export class BvaWheel {
           <path onClick={this.showSongHandler.bind(this, 'song12')} d="M311.13,503.126L512.501,623.962C537.951,575.645 590.484,527.622 635.642,502.63L521.977,299.53C521.977,299.53 376.638,375.447 311.13,503.126Z" />
         </g>
         <defs>
-          <image id="wheel" width="1600px" height="1586px" href="assets/cover.jpeg" />
+          <image id="wheel" width="1600px" height="1586px" href="/assets/cover.jpeg" />
 
           <pattern id="img1" patternUnits="userSpaceOnUse" x="0" y="0" width="1600" height="1586">
             <use href="#wheel" width="1600" height="1586" />
