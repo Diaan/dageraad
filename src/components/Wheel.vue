@@ -64,7 +64,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
 export default class Wheel extends Vue {
@@ -74,18 +74,59 @@ export default class Wheel extends Vue {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-h3 {
-  margin: 40px 0 0;
+svg{
+  height: 100vmin;
+  width: 100vmin;
+  transform: filter 1s ease;
+
+  &:hover {
+    animation-play-state: paused;
+    #bg{
+      // filter: url(#pictureFilter2);
+    }
+  }
+
+
+  #wheelgroup{
+    transform-origin: center center;
+    // animation: rotation 60s infinite linear;
+    &:hover {
+      animation-play-state: paused;
+    }
+  }
+  path{
+    fill-opacity:0;
+    cursor: pointer;
+    stroke-width:0px;
+    transform-origin: center center;
+    transition: transform 1s ease;
+    z-index: 1;
+      fill: url(#img1);
+    &:hover{
+      fill-opacity:1;
+      // fill: url(#img2);
+      fill: url(#img1);
+      // filter: url(#pictureFilter1);
+      z-index: 2;
+    transform: scale(1.2);
+    }
+  }
+
+  #part1 {
+    transform-origin: 660px 260px;
+  }
+
+  #part1:hover {
+    transform: scale(1.2);
+  }
+
 }
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
 }
 </style>
