@@ -1,0 +1,9 @@
+<ul>
+  <li *ngFor="let song of (songs$ | async)" (click)="loadSong(song)">{{song.title}}</li>
+</ul>
+
+<div *ngIf="(activeSong$ | async) as song">
+  <h1>{{song.title}}</h1>
+  {{song.text}}
+</div>
+
