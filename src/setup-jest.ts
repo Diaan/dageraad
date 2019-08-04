@@ -1,4 +1,4 @@
-import 'jest-preset-angular';
+// import 'jest-preset-angular';
 // import 'global-mocks';
 // require('node_modules/@angular-builders/jest/dist/jest-config/setup.js');
 

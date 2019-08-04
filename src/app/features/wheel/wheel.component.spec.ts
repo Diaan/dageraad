@@ -1,25 +1,40 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { createTestComponentFactory, Spectator } from '@netbasal/spectator';
+import { Router, convertToParamMap } from '@angular/router';
+import { SongsService } from 'src/app/core/songs.service';
 import { WheelComponent } from './wheel.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 describe('WheelComponent', () => {
-  let component: WheelComponent;
-  let fixture: ComponentFixture<WheelComponent>;
+  let spectator: Spectator<WheelComponent>;
+  // let router: Router;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ WheelComponent ]
-    })
-    .compileComponents();
-  }));
+  const songsSubject = new BehaviorSubject(undefined);
+  const songsService = {
+    songs$: songsSubject.asObservable(),
+    songList: jest.fn(() => songsSubject.asObservable())
+  };
+
+  const createComponent = createTestComponentFactory<WheelComponent>({
+    component: WheelComponent,
+    declarations: [
+    ],
+    schemas: [NO_ERRORS_SCHEMA],
+    providers: [
+      { provide: SongsService, useValue: songsService }
+    ]
+  });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WheelComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+
+    // songsSubject.next([]);
+
+    spectator = createComponent();
+    // router = spectator.get(Router);
+    // router.navigateByUrl = navigateByUrl;
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });

@@ -5,11 +5,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WheelComponent } from './features/wheel/wheel.component';
 import { HttpClientModule } from '@angular/common/http';
+import { YoutubeComponent } from './shared/youtube/youtube.component';
+import { SongDetailComponent } from './shared/song-detail/song-detail.component';
+import { SpotifyComponent } from './shared/spotify/spotify.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    WheelComponent
+    WheelComponent,
+    YoutubeComponent,
+    SongDetailComponent,
+    SpotifyComponent
   ],
   imports: [
     BrowserModule,

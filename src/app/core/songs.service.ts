@@ -1,15 +1,16 @@
-import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject, of } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 
 export interface Song {
   wpId: number;
   slug: string;
   title: string;
   text?: string;
-  videoLink?: string;
+  videoId?: string;
   detail?: any;
+  spotify?: string;
 }
 
 export interface WordpressPage {
@@ -33,15 +34,19 @@ export interface WordpressPage {
   comment_status: string;
   ping_status: string;
   template: string;
-  meta?: (null)[] | null;
+  meta?: PageMatadata;
   _links: any;
+}
+
+export interface PageMatadata {
+  video?: string;
+  spotify?: string;
 }
 
 export interface RenderedContent {
   rendered: string;
   protected?: boolean;
 }
-
 
 @Injectable({
   providedIn: 'root'
@@ -57,27 +62,27 @@ export class SongsService {
   songList(): Observable<Song[]> {
     this.songs.next([
       {
-        wpId: 1481,
+        wpId: 4,
         slug: 'song1',
         title: 'Song 1'
       },
       {
-        wpId: 1479,
+        wpId: 2,
         slug: 'song2',
         title: 'Song 2'
       },
       {
-        wpId: 1172,
+        wpId: 19,
         slug: 'song3',
         title: 'Song 3'
       },
       {
-        wpId: 1143,
+        wpId: 22,
         slug: 'song4',
         title: 'Song 4'
       },
       {
-        wpId: 1052,
+        wpId: 25,
         slug: 'song5',
         title: 'Song 5'
       },
@@ -86,6 +91,7 @@ export class SongsService {
     return this.songs$;
   }
 
+
   songData(wpId: number): Observable <Song> {
     const song: Song = this.songs.value.find(s => s.wpId === wpId);
 
@@ -93,12 +99,13 @@ export class SongsService {
       return of(song);
     }
 
-    return this.http.get<WordpressPage>(`http://bertramvanalphen.nl/wp-json/wp/v2/pages/${wpId}`).pipe(
+    return this.http.get<WordpressPage>(`http://dageraad.dianabroeders.nl/wp-json/wp/v2/pages/${wpId}`).pipe(
       map(page => {
         const songs = this.songs.value.map(song => {
           if (song.wpId === page.id) {
-            // song.text = page.content.rendered;
-            song.text = page.excerpt.rendered;
+            song.text = page.content.rendered;
+            song.videoId = page.meta.video;
+            song.spotify = page.meta.spotify;
           }
           return song;
         });

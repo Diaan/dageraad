@@ -1,0 +1,4 @@
+<h1>{{song.title}}</h1>
+<div [innerHTML]="song.text"></div>
+<app-youtube [id]="song.videoId"></app-youtube>
+<app-spotify [spotifyUri]="song.spotify"></app-spotify>
