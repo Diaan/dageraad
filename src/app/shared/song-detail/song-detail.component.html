@@ -1,4 +1,6 @@
-<h1>{{song.title}}</h1>
-<div [innerHTML]="song.text"></div>
-<app-youtube [id]="song.videoId"></app-youtube>
-<app-spotify [spotifyUri]="song.spotify"></app-spotify>
+<ng-container *ngIf="song | async; let song">
+  <h1>{{song?.title}}</h1>
+  <div [innerHTML]="song?.text"></div>
+  <app-youtube [id]="song?.videoId"></app-youtube>
+  <app-spotify [spotifyUri]="song?.spotify"></app-spotify>
+</ng-container>

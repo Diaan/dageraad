@@ -1,6 +1,10 @@
 <ul>
-  <li *ngFor="let song of (songs$ | async)" (click)="loadSong(song)">{{song.title}}</li>
+  <li *ngFor="let song of (songs$ | async)">
+    <a
+      [routerLink]="['song',song.slug]"
+      routerLinkActive
+      #rla="routerLinkActive"
+      [class.active]="rla.isActive">{{song.title}}</a>
+  </li>
 </ul>
-
-<app-song-detail [song]="song" *ngIf="(activeSong$ | async) as song"></app-song-detail>
 

@@ -1,5 +1,5 @@
 import { Observable, BehaviorSubject, of } from 'rxjs';
-import { tap, map } from 'rxjs/operators';
+import { tap, map, shareReplay } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -91,6 +91,15 @@ export class SongsService {
     return this.songs$;
   }
 
+  getIdFromSlug(slug: string): number {
+    return this.songs.value.find(song => song.slug === slug).wpId;
+  }
+
+  cacheSong(songData): Song {
+    const updated = this.songs.value.map(s => s.wpId === songData.wpId ? {...s, ...songData} :  s);
+    this.songs.next(updated);
+    return updated.find(s => s.wpId === songData.wpId);
+  }
 
   songData(wpId: number): Observable <Song> {
     const song: Song = this.songs.value.find(s => s.wpId === wpId);
@@ -100,18 +109,14 @@ export class SongsService {
     }
 
     return this.http.get<WordpressPage>(`http://dageraad.dianabroeders.nl/wp-json/wp/v2/pages/${wpId}`).pipe(
+      shareReplay(),
       map(page => {
-        const songs = this.songs.value.map(song => {
-          if (song.wpId === page.id) {
-            song.text = page.content.rendered;
-            song.videoId = page.meta.video;
-            song.spotify = page.meta.spotify;
-          }
-          return song;
+        return this.cacheSong({
+          wpId: page.id,
+          text: page.content.rendered,
+          videoId: page.meta.video,
+          spotify: page.meta.spotify
         });
-
-        this.songs.next(songs);
-        return this.songs.value.find(s => s.wpId === wpId);
       })
     );
   }

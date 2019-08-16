@@ -8,6 +8,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { YoutubeComponent } from './shared/youtube/youtube.component';
 import { SongDetailComponent } from './shared/song-detail/song-detail.component';
 import { SpotifyComponent } from './shared/spotify/spotify.component';
+import { RouterModule, Routes } from '@angular/router';
+import { SongResolver } from './core/songs-resolver.service';
+
+const routes: Routes = [
+  {
+    path: 'song/:slug',
+    resolve: { song: SongResolver },
+    component: SongDetailComponent
+  }
+];
 
 @NgModule({
   declarations: [
@@ -20,9 +30,10 @@ import { SpotifyComponent } from './shared/spotify/spotify.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [SongResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
