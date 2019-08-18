@@ -1,3 +1,5 @@
+@import './styles/reset';
+
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css?family=BioRhyme');
 
@@ -13,14 +15,6 @@ body{
 html, body {
   background-color: var(--color1);
 
-  height: 100%;
-  width: 100%;
-  margin: 0;
-
-}
-
-* {
-  box-sizing: border-box;
 }
 
 body{
@@ -29,8 +23,4 @@ body{
   padding:24px;
 }
 
-button {
-  background-color: transparent;
-  border: 0;
-  -webkit-appearance: none;
-}
+
