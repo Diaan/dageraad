@@ -10,8 +10,8 @@ export class SongResolver implements Resolve<Song> {
 
   resolve(route: ActivatedRouteSnapshot): Observable<Song> {
     const slug = route.paramMap.get('slug');
-    const id = this.service.getIdFromSlug(slug);
-    return this.service.songData(id);
+    // const id = this.service.getIdFromSlug(slug);
+    return this.service.songData(slug);
       // .pipe(
       //   tap(song => this.service.switch(song))
       // );

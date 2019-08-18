@@ -7,6 +7,7 @@ export interface Song {
   wpId: number;
   slug: string;
   title: string;
+  trackNumber: number;
   text?: string;
   videoId?: string;
   detail?: any;
@@ -62,29 +63,88 @@ export class SongsService {
   songList(): Observable<Song[]> {
     this.songs.next([
       {
-        wpId: 4,
-        slug: 'song1',
-        title: 'Song 1'
+        wpId: 1607,
+        slug: 'blauwdruk',
+        title: 'Blauwdruk',
+        trackNumber: 1
       },
       {
-        wpId: 2,
-        slug: 'song2',
-        title: 'Song 2'
+        wpId: 1609,
+        slug: 'morse',
+        title: 'Morse',
+        trackNumber: 2
       },
       {
-        wpId: 19,
-        slug: 'song3',
-        title: 'Song 3'
+        wpId: 1607,
+        slug: 'schommel',
+        title: 'Schommel',
+        trackNumber: 3
       },
       {
-        wpId: 22,
-        slug: 'song4',
-        title: 'Song 4'
+        wpId: 1607,
+        slug: 'groen',
+        title: 'Groen',
+        trackNumber: 4
       },
       {
-        wpId: 25,
-        slug: 'song5',
-        title: 'Song 5'
+        wpId: 1607,
+        slug: 'dijk',
+        title: 'Dijk',
+        trackNumber: 5
+      },
+      {
+        wpId: 1607,
+        slug: 'haven',
+        title: 'Haven',
+        trackNumber: 6
+      },
+      {
+        wpId: 1607,
+        slug: 'gaan',
+        title: 'Gaan',
+        trackNumber: 7
+      },
+      {
+        wpId: 1607,
+        slug: 'wolven',
+        title: 'Wolven',
+        trackNumber: 8
+      },
+      {
+        wpId: 1607,
+        slug: 'holst',
+        title: 'Holst',
+        trackNumber: 9
+      },
+      {
+        wpId: 1607,
+        slug: 'nacht',
+        title: 'Nacht',
+        trackNumber: 10
+      },
+      {
+        wpId: 1607,
+        slug: 'afgrond',
+        title: 'Afgrond',
+        trackNumber: 11
+      },
+      {
+        wpId: 1607,
+        slug: 'vogels',
+        title: 'Vogels',
+        trackNumber: 12
+      },
+      {
+        wpId: 1607,
+        slug: 'berg',
+        title: 'Berg',
+        trackNumber: 13
+      },
+      {
+        wpId: 1607,
+        slug: 'zomer',
+        title: 'Zomer',
+        trackNumber: 14
       },
     ]);
 
@@ -96,19 +156,19 @@ export class SongsService {
   }
 
   cacheSong(songData): Song {
-    const updated = this.songs.value.map(s => s.wpId === songData.wpId ? {...s, ...songData} :  s);
+    const updated = this.songs.value.map(s => s.wpId === songData.wpId ? { ...s, ...songData } : s);
     this.songs.next(updated);
     return updated.find(s => s.wpId === songData.wpId);
   }
 
-  songData(wpId: number): Observable <Song> {
-    const song: Song = this.songs.value.find(s => s.wpId === wpId);
+  songData(slug: string): Observable<Song> {
+    const song: Song = this.songs.value.find(s => s.slug === slug);
 
     if (song.text) {
       return of(song);
     }
 
-    return this.http.get<WordpressPage>(`http://dageraad.dianabroeders.nl/wp-json/wp/v2/pages/${wpId}`).pipe(
+    return this.http.get<WordpressPage>(`https://bertramvanalphen.nl/wp-json/wp/v2/pages/${this.getIdFromSlug(slug)}`).pipe(
       shareReplay(),
       map(page => {
         return this.cacheSong({

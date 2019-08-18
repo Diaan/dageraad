@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WheelComponent } from './features/wheel/wheel.component';
@@ -10,12 +9,14 @@ import { SongDetailComponent } from './shared/song-detail/song-detail.component'
 import { SpotifyComponent } from './shared/spotify/spotify.component';
 import { RouterModule, Routes } from '@angular/router';
 import { SongResolver } from './core/songs-resolver.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const routes: Routes = [
   {
     path: 'song/:slug',
     resolve: { song: SongResolver },
-    component: SongDetailComponent
+    component: SongDetailComponent,
+    data: {animation: 'song'}
   }
 ];
 
@@ -31,6 +32,7 @@ const routes: Routes = [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    BrowserAnimationsModule,
     RouterModule.forRoot(routes)
   ],
   providers: [SongResolver],

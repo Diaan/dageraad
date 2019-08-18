@@ -1,1 +1,36 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=BioRhyme');
+
+body{
+  --color1: #F9F8CE;
+  --color2: #C33535;
+  --color3: #4D7460;
+  --color4: #D5C280;
+  --color5: #C2BD35;
+
+}
+
+html, body {
+  background-color: var(--color1);
+
+  height: 100%;
+  width: 100%;
+  margin: 0;
+
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body{
+  color: var(--color3);
+  font: 24px/40px BioRhyme;
+  padding:24px;
+}
+
+button {
+  background-color: transparent;
+  border: 0;
+  -webkit-appearance: none;
+}

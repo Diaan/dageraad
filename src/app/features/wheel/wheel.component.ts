@@ -16,9 +16,4 @@ export class WheelComponent implements OnInit {
   ngOnInit() {
     this.songs$ = this.songsService.songList();
   }
-
-  loadSong(song: Song) {
-    this.activeSong$ = this.songsService.songData(song.wpId);
-  }
-
 }
