@@ -155,15 +155,14 @@ export class SongsService {
     return this.songs.value.find(song => song.slug === slug).wpId;
   }
 
-  cacheSong(songData): Song {
-    const updated = this.songs.value.map(s => s.wpId === songData.wpId ? { ...s, ...songData } : s);
+  cacheSong(slug, songData): Song {
+    const updated = this.songs.value.map(s => s.slug === slug ? { ...s, ...songData } : s);
     this.songs.next(updated);
-    return updated.find(s => s.wpId === songData.wpId);
+    return updated.find(s => s.slug === slug);
   }
 
   songData(slug: string): Observable<Song> {
     const song: Song = this.songs.value.find(s => s.slug === slug);
-
     if (song.text) {
       return of(song);
     }
@@ -171,7 +170,7 @@ export class SongsService {
     return this.http.get<WordpressPage>(`https://bertramvanalphen.nl/wp-json/wp/v2/pages/${this.getIdFromSlug(slug)}`).pipe(
       shareReplay(),
       map(page => {
-        return this.cacheSong({
+        return this.cacheSong(slug, {
           wpId: page.id,
           text: page.content.rendered,
           videoId: page.meta.video,
