@@ -1,4 +1,4 @@
-<ul>
+<!-- <ul>
   <li *ngFor="let song of (songs$ | async)">
     <a
       [routerLink]="['song',song.slug]"
@@ -6,5 +6,38 @@
       #rla="routerLinkActive"
       [class.active]="rla.isActive">{{song.title}}</a>
   </li>
-</ul>
+</ul> -->
 
+<svg
+  viewBox="0 0 1600 1586"
+  version="1.1"
+  xmlns="http://www.w3.org/2000/svg"
+  style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+  <g id="wheelgroup">
+    <use href="#wheel" x="0" y="0" width="1600px" height="1586px" id="bg"></use>
+    <path
+      *ngFor="let song of (songs$ | async)"
+      [attr.d]="song.path"
+      (click)="navigateTo(song)"
+      (mouseenter)="pause()"
+      (mouseleave)="play()">
+    </path>
+    </g>
+  <text x="530" y="835">Dageraad</text>
+<defs>
+  <image id="wheel" width="1600px" height="1586px" href="../assets/images/wheel.png"></image>
+
+  <pattern id="img1" patternUnits="userSpaceOnUse" x="0" y="0" width="1600" height="1586">
+    <use href="#wheel" width="1600" height="1586"></use>
+  </pattern>
+  <pattern id="img2" patternUnits="userSpaceOnUse" x="0" y="0" width="1600" height="1586">
+    <use href="#wheel2" width="1600" height="1586"></use>
+  </pattern>
+  <filter id="pictureFilter1">
+    <feColorMatrix type="saturate" values="0.1"></feColorMatrix>
+  </filter>
+  <filter id="pictureFilter2">
+    <feGaussianBlur stdDeviation="5"></feGaussianBlur>
+  </filter>
+</defs>
+</svg>
