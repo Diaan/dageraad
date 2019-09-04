@@ -1,39 +1,3 @@
-li {
-  display: inline-block;
-  padding: 4px 8px;
-  background-color: var(--color3);
-  color: var(--color5);
-  margin-right: 16px;
-  margin-bottom: 16px;
-}
-
-.active::before {
-  animation: dawn .8s;
-  content: '🌕';
-}
-
-a::before{
-  animation: dusk .8s;
-  content: '🌑';
-  margin-right: 8px;
-}
-
-@keyframes dawn {
-  0% { content: '🌑';}
- 25% { content: '🌒';}
- 50% { content: '🌓';}
- 75% { content: '🌔';}
-100% { content: '🌕';}
-}
-
-@keyframes dusk {
-  0% { content: '🌕';}
- 25% { content: '🌖';}
- 50% { content: '🌗';}
- 75% { content: '🌘';}
-100% { content: '🌑';}
-}
-
 :host.paused #wheelgroup{
   animation-play-state: paused;
 }
@@ -80,6 +44,7 @@ svg{
     transform: scale(1.2);
   }
 }
+
 @keyframes rotation {
   from {
     transform: rotate(0deg);

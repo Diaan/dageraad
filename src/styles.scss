@@ -16,6 +16,7 @@ body{
   --color3: #245d60;
   --color4: #d0e711;
   --color5: #bc192d;
+  --color6: #ffffc8;
 
 }
 
@@ -25,7 +26,7 @@ html, body {
 }
 
 body{
-  color: var(--color1);
+  color: var(--color3);
   font: 24px/40px Crimsons;
   padding:24px;
   display: flex;
