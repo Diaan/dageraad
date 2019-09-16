@@ -7,7 +7,7 @@ import { take } from 'rxjs/operators';
 import * as PIXI from 'pixi.js';
 
 const ROTATION_SPEED = 0.003;
-const NAVIGATE_SPEED = 0.03;
+const NAVIGATE_SPEED = 0.05;
 
 @Component({
   selector: 'app-wheel',
@@ -19,18 +19,26 @@ export class WheelComponent implements OnInit, OnChanges {
   paused = false;
 
   app: PIXI.Application;
-  renderer: any; // PIXI.WebGLRenderer | PIXI.CanvasRenderer;
+  renderer: PIXI.Renderer;
   container: PIXI.Container;
   wheel: PIXI.Container;
   rotateTo: number;
   rotateBackwards: boolean;
+  zoomTo: number;
+  zoomIn: boolean;
 
-  // rotationspeed: number = ROTATION_SPEED;
   get rotationspeed() {
     if (this.rotateTo) {
       return NAVIGATE_SPEED;
     }
     if (this.paused || (this.activeSong.song && !this.rotateTo)) {
+      return 0;
+    }
+    return ROTATION_SPEED;
+  }
+
+  get zoomspeed() {
+    if ((this.zoomIn && this.wheel.scale.x > this.zoomTo) || (!this.zoomIn && this.wheel.scale.x < this.zoomTo)) {
       return 0;
     }
     return ROTATION_SPEED;
@@ -51,15 +59,45 @@ export class WheelComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.activeSong && changes.activeSong.currentValue.song) {
-      this.wheel.rotation = this.wheel.rotation % (2 * Math.PI);
-      this.rotateBackwards = changes.activeSong.currentValue.song.rotation < this.wheel.rotation;
-      this.rotateTo =  changes.activeSong.currentValue.song.rotation;
-    } else if (changes.activeSong && changes.activeSong.previousValue && changes.activeSong.previousValue.song) {
-      this.paused = false;
-      this.rotateTo = null;
-      this.rotateBackwards = false;
+    if (changes.activeSong && (
+        (changes.activeSong.currentValue && changes.activeSong.currentValue.song) ||
+        (changes.activeSong.previousValue && changes.activeSong.previousValue.song)
+      )) {
+      if (changes.activeSong.currentValue.song) {
+        this.wheel.rotation = this.wheel.rotation % (2 * Math.PI);
+        this.rotateBackwards = changes.activeSong.currentValue.song.rotation < this.wheel.rotation;
+
+        if (Math.abs(this.wheel.rotation - changes.activeSong.currentValue.song.rotation) > Math.PI) {
+          if (this.wheel.rotation - changes.activeSong.currentValue.song.rotation > 0) {
+            this.wheel.rotation = this.wheel.rotation - 2 * Math.PI;
+          } else {
+            this.wheel.rotation = this.wheel.rotation + 2 * Math.PI;
+          }
+          this.rotateBackwards = !this.rotateBackwards;
+        }
+        this.rotateTo =  changes.activeSong.currentValue.song.rotation;
+      } else if (changes.activeSong && changes.activeSong.previousValue && changes.activeSong.previousValue.song) {
+        // terug naar standaard rotatie
+        this.paused = false;
+        this.rotateTo = null;
+        this.rotateBackwards = false;
+      }
+
+
+      console.log(changes);
+      if (changes.activeSong.previousValue.song && !changes.activeSong.currentValue.song) {
+        this.zoomIn = false;
+      } else {
+        this.zoomIn = true;
+      }
+
+      if (this.activeSong && this.activeSong.song) {
+        this.zoomTo = 2;
+      } else {
+        this.zoomTo = 1;
+      }
     }
+
   }
 
   createWheel(songs: Song[]) {
@@ -93,6 +131,8 @@ export class WheelComponent implements OnInit, OnChanges {
 
    animate() {
     requestAnimationFrame(() => this.animate());
+
+    // check if rotated far enough
     if (this.rotateBackwards) {
       if (this.rotateTo && this.wheel.rotation < this.rotateTo) {
         this.paused = true;
@@ -105,32 +145,44 @@ export class WheelComponent implements OnInit, OnChanges {
       }
     }
 
+    // rotate
     if (this.rotateBackwards) {
       this.wheel.rotation -= this.rotationspeed;
     } else {
       this.wheel.rotation += this.rotationspeed;
     }
+
+    // zoom
+    if (this.zoomIn && this.wheel.scale.x < this.zoomTo) {
+      this.wheel.scale.x += NAVIGATE_SPEED;
+      this.wheel.scale.y += NAVIGATE_SPEED;
+    } else if (!this.zoomIn && this.wheel.scale.x > this.zoomTo) {
+      this.wheel.scale.x -= NAVIGATE_SPEED;
+      this.wheel.scale.y -= NAVIGATE_SPEED;
+    }
+
     this.renderer.render(this.container);
   }
 
-  createElement(data) {
+  createElement(data: Song) {
     const basetexture = new PIXI.BaseTexture(data.imageUrl);
     const texture = new PIXI.Texture(basetexture);
     const element = new PIXI.Sprite(texture);
+
     element.anchor.set(0.5);
     element.x = data.x;
     element.y = data.y;
 
     element.interactive = true;
     element.buttonMode = true;
-    element.on('pointerover', () => this.pause(data.slug));
+    element.on('pointerover', () => this.pause());
     element.on('pointerout', () => this.play());
     element.on('pointerdown', () => this.navigateTo(data));
 
     return element;
   }
 
-  pause(s) {
+  pause() {
     this.paused = true;
   }
 
@@ -139,7 +191,6 @@ export class WheelComponent implements OnInit, OnChanges {
     }
 
   navigateTo(song: Song) {
-
     this.router.navigate(['/song', song.slug]);
   }
 }

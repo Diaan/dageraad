@@ -28,7 +28,6 @@ export class SongDetailComponent implements OnInit {
   }
 
   navigateTo(slug: string) {
-    console.log(slug);
     this.router.navigate(['/song', slug]);
   }
 }

@@ -75,7 +75,7 @@ export class SongsService {
         slug: 'blauwdruk',
         title: 'Blauwdruk',
         trackNumber: 1,
-        imageUrl: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/53148/star.png',
+        imageUrl: '/assets/images/track1.png',
         x: 0,
         y: 0,
         rotation: 0.78
@@ -85,7 +85,7 @@ export class SongsService {
         slug: 'morse',
         title: 'Morse',
         trackNumber: 2,
-        imageUrl: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/53148/star2.png',
+        imageUrl: '/assets/images/track2.png',
         x: 100,
         y: 0,
         rotation: 0.02
@@ -95,7 +95,7 @@ export class SongsService {
         slug: 'schommel',
         title: 'Schommel',
         trackNumber: 3,
-        imageUrl: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/53148/star3.png',
+        imageUrl: '/assets/images/track3.png',
         x: 200,
         y: 0,
         rotation: 5.46
@@ -105,7 +105,7 @@ export class SongsService {
         slug: 'groen',
         title: 'Groen',
         trackNumber: 4,
-        imageUrl: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/53148/star4.png',
+        imageUrl: '/assets/images/track4.png',
         x: 200,
         y: 100,
         rotation: 4.74
@@ -115,7 +115,7 @@ export class SongsService {
         slug: 'dijk',
         title: 'Dijk',
         trackNumber: 5,
-        imageUrl: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/53148/star5.png',
+        imageUrl: '/assets/images/track5.png',
         x: 200,
         y: 200,
         rotation: 3.9
@@ -125,7 +125,7 @@ export class SongsService {
         slug: 'haven',
         title: 'Haven',
         trackNumber: 6,
-        imageUrl: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/53148/star6.png',
+        imageUrl: '/assets/images/track6.png',
         x: 100,
         y: 200,
         rotation: 3.1
@@ -135,7 +135,7 @@ export class SongsService {
         slug: 'gaan',
         title: 'Gaan',
         trackNumber: 7,
-        imageUrl: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/53148/star2.png',
+        imageUrl: '/assets/images/track7.png',
         x: 0,
         y: 200,
         rotation: 2.3
@@ -145,7 +145,7 @@ export class SongsService {
         slug: 'wolven',
         title: 'Wolven',
         trackNumber: 8,
-        imageUrl: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/53148/star4.png',
+        imageUrl: '/assets/images/track8.png',
         x: 0,
         y: 100,
         rotation: 1.6
