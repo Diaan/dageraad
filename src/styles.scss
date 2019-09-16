@@ -22,16 +22,20 @@ body{
 
 html, body {
   background-color: var(--color1);
-
+  height: 100vh;
+  overflow: hidden;
 }
 
 body{
   color: var(--color3);
   font: 24px/40px Crimsons;
-  padding:24px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 
+canvas {
+  height: 100vmin;
+  width: 100vmin;
+}
