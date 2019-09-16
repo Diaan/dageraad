@@ -1,8 +1,7 @@
-import { Component, OnInit, HostBinding, Input, ElementRef, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, HostBinding, Input, ElementRef, OnChanges, SimpleChanges, NgZone } from '@angular/core';
 import { SongsService, Song } from 'src/app/core/songs.service';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 import { take } from 'rxjs/operators';
 import * as PIXI from 'pixi.js';
 
@@ -49,7 +48,8 @@ export class WheelComponent implements OnInit, OnChanges {
   constructor(
     private songsService: SongsService,
     private router: Router,
-    private element: ElementRef
+    private element: ElementRef,
+    private ngZone: NgZone
   ) { }
 
   ngOnInit() {
@@ -83,8 +83,6 @@ export class WheelComponent implements OnInit, OnChanges {
         this.rotateBackwards = false;
       }
 
-
-      console.log(changes);
       if (changes.activeSong.previousValue.song && !changes.activeSong.currentValue.song) {
         this.zoomIn = false;
       } else {
@@ -101,11 +99,13 @@ export class WheelComponent implements OnInit, OnChanges {
   }
 
   createWheel(songs: Song[]) {
-    this.renderer = PIXI.autoDetectRenderer({
-      width: 800,
-      height: 800,
-      transparent: true,
-      resolution: window.devicePixelRatio || 1,
+    this.ngZone.runOutsideAngular(() => {
+      this.renderer = new PIXI.Renderer({
+        width: 800,
+        height: 800,
+        transparent: true,
+        resolution: window.devicePixelRatio || 1,
+      });
     });
 
     this.element.nativeElement.appendChild(this.renderer.view);
@@ -114,17 +114,18 @@ export class WheelComponent implements OnInit, OnChanges {
     this.wheel = new PIXI.Container();
 
     for (const song of songs) {
-      this.wheel.addChild(this.createElement(song));
-    }
+        this.wheel.addChild(this.createElement(song));
+      }
     this.container.addChild(this.wheel);
 
-    // Move container to the center
+      // Move container to the center
     this.wheel.x = this.renderer.screen.width / 2;
     this.wheel.y = this.renderer.screen.height / 2;
 
-    // Center bunny sprite in local container coordinates
+      // Center bunny sprite in local container coordinates
     this.wheel.pivot.x = this.container.width / 2;
     this.wheel.pivot.y = this.container.height / 2;
+
 
     this.animate();
   }
@@ -161,7 +162,9 @@ export class WheelComponent implements OnInit, OnChanges {
       this.wheel.scale.y -= NAVIGATE_SPEED;
     }
 
-    this.renderer.render(this.container);
+    this.ngZone.runOutsideAngular(() => {
+      this.renderer.render(this.container);
+    });
   }
 
   createElement(data: Song) {
