@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
-import { Song, SongsService } from './songs.service';
+import { SongsService } from './songs.service';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { Song } from '../models/song.model';
 
 @Injectable()
 export class SongResolver implements Resolve<Song> {

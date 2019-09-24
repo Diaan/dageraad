@@ -1,9 +1,10 @@
 import { Component, OnInit, HostBinding, Input, ElementRef, OnChanges, SimpleChanges, NgZone } from '@angular/core';
-import { SongsService, Song } from 'src/app/core/songs.service';
+import { SongsService } from 'src/app/core/songs.service';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { take } from 'rxjs/operators';
 import * as PIXI from 'pixi.js';
+import { Song } from 'src/app/models/song.model';
 
 const ROTATION_SPEED = 0.003;
 const NAVIGATE_SPEED = 0.05;
@@ -26,6 +27,21 @@ export class WheelComponent implements OnInit, OnChanges {
   zoomTo: number;
   zoomIn: boolean;
 
+  style = new PIXI.TextStyle({
+    fontFamily: 'Crimsons',
+    fontSize: 36,
+    fill: ['#ffffff', '#00ff99'], // gradient
+    stroke: '#4a1850',
+    strokeThickness: 5,
+    dropShadow: true,
+    dropShadowColor: '#000000',
+    dropShadowBlur: 4,
+    dropShadowAngle: Math.PI / 6,
+    dropShadowDistance: 6,
+    wordWrap: true,
+    wordWrapWidth: 440,
+  });
+
   get rotationspeed() {
     if (this.rotateTo) {
       return NAVIGATE_SPEED;
@@ -43,7 +59,7 @@ export class WheelComponent implements OnInit, OnChanges {
     return ROTATION_SPEED;
   }
 
-  @Input() activeSong: {song: Song};
+  @Input() activeSong: { song: Song };
 
   constructor(
     private songsService: SongsService,
@@ -60,9 +76,9 @@ export class WheelComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.activeSong && (
-        (changes.activeSong.currentValue && changes.activeSong.currentValue.song) ||
-        (changes.activeSong.previousValue && changes.activeSong.previousValue.song)
-      )) {
+      (changes.activeSong.currentValue && changes.activeSong.currentValue.song) ||
+      (changes.activeSong.previousValue && changes.activeSong.previousValue.song)
+    )) {
       if (changes.activeSong.currentValue.song) {
         this.wheel.rotation = this.wheel.rotation % (2 * Math.PI);
         this.rotateBackwards = changes.activeSong.currentValue.song.rotation < this.wheel.rotation;
@@ -75,7 +91,7 @@ export class WheelComponent implements OnInit, OnChanges {
           }
           this.rotateBackwards = !this.rotateBackwards;
         }
-        this.rotateTo =  changes.activeSong.currentValue.song.rotation;
+        this.rotateTo = changes.activeSong.currentValue.song.rotation;
       } else if (changes.activeSong && changes.activeSong.previousValue && changes.activeSong.previousValue.song) {
         // terug naar standaard rotatie
         this.paused = false;
@@ -101,8 +117,8 @@ export class WheelComponent implements OnInit, OnChanges {
   createWheel(songs: Song[]) {
     this.ngZone.runOutsideAngular(() => {
       this.renderer = new PIXI.Renderer({
-        width: 800,
-        height: 800,
+        width: 1600,
+        height: 1600,
         transparent: true,
         resolution: window.devicePixelRatio || 1,
       });
@@ -114,23 +130,22 @@ export class WheelComponent implements OnInit, OnChanges {
     this.wheel = new PIXI.Container();
 
     for (const song of songs) {
-        this.wheel.addChild(this.createElement(song));
-      }
+      this.wheel.addChild(this.createElement(song));
+    }
     this.container.addChild(this.wheel);
 
-      // Move container to the center
+    // Move container to the center
     this.wheel.x = this.renderer.screen.width / 2;
     this.wheel.y = this.renderer.screen.height / 2;
 
-      // Center bunny sprite in local container coordinates
+    // Center bunny sprite in local container coordinates
     this.wheel.pivot.x = this.container.width / 2;
     this.wheel.pivot.y = this.container.height / 2;
-
 
     this.animate();
   }
 
-   animate() {
+  animate() {
     requestAnimationFrame(() => this.animate());
 
     // check if rotated far enough
@@ -191,7 +206,7 @@ export class WheelComponent implements OnInit, OnChanges {
 
   play() {
     this.paused = false;
-    }
+  }
 
   navigateTo(song: Song) {
     this.router.navigate(['/song', song.slug]);

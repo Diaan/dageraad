@@ -2,60 +2,9 @@ import { Observable, BehaviorSubject, of } from 'rxjs';
 import { tap, map, shareReplay } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Song, WordpressPage } from '../models/song.model';
 
-export interface Song {
-  wpId: number;
-  slug: string;
-  title: string;
-  trackNumber: number;
-  imageUrl: string;
-  x: number;
-  y: number;
-  rotation: number;
-  text?: string;
-  videoId?: string;
-  detail?: any;
-  spotify?: string;
-  links?: {
-    next: string;
-    prev: string;
-  };
-}
 
-export interface WordpressPage {
-  id: number;
-  date: string;
-  date_gmt: string;
-  guid: RenderedContent;
-  modified: string;
-  modified_gmt: string;
-  slug: string;
-  status: string;
-  type: string;
-  link: string;
-  title: RenderedContent;
-  content: RenderedContent;
-  excerpt: RenderedContent;
-  author: number;
-  featured_media: number;
-  parent: number;
-  menu_order: number;
-  comment_status: string;
-  ping_status: string;
-  template: string;
-  meta?: PageMatadata;
-  _links: any;
-}
-
-export interface PageMatadata {
-  video?: string;
-  spotify?: string;
-}
-
-export interface RenderedContent {
-  rendered: string;
-  protected?: boolean;
-}
 
 @Injectable({
   providedIn: 'root'
@@ -187,17 +136,21 @@ export class SongsService {
       //   slug: 'berg',
       //   title: 'Berg',
       //   trackNumber: 13,
-      //   path: 'M311.13,503.126L512.501,623.962C537.951,575.645 590.484,527.622 635.642,502.63L521.977,299.53C521.977,299.53 376.638,375.447 311.13,503.126Z',
-      //   rotation: 350
+      //   imageUrl: '/assets/images/berg.png',
+      //   x: 0,
+      //   y: 100,
+      //   rotation: 1.6
       // },
-      // {
-      //   wpId: 1607,
-      //   slug: 'zomer',
-      //   title: 'Zomer',
-      //   trackNumber: 14,
-      //   path: 'M311.13,503.126L512.501,623.962C537.951,575.645 590.484,527.622 635.642,502.63L521.977,299.53C521.977,299.53 376.638,375.447 311.13,503.126Z',
-      //   rotation: 360
-      // },
+      {
+        wpId: 1607,
+        slug: 'zomer',
+        title: 'Zomer',
+        trackNumber: 14,
+        imageUrl: '/assets/images/test.svg',
+        x: 0,
+        y: 100,
+        rotation: 1.6
+      },
     ]);
 
     return this.songs$;
@@ -220,7 +173,7 @@ export class SongsService {
       return of(song);
     }
 
-    const currentIndex = this.songs.value.indexOf(song) ;
+    const currentIndex = this.songs.value.indexOf(song);
     let links = {};
     if (currentIndex === 0) {
       links = {
