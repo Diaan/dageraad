@@ -1,55 +1,11 @@
+
 import { Observable, BehaviorSubject, of } from 'rxjs';
 import { tap, map, shareReplay } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Song, WordpressPage } from '../models/song.model';
 
-export interface Song {
-  wpId: number;
-  slug: string;
-  title: string;
-  trackNumber: number;
-  path: string;
-  rotation: number;
-  text?: string;
-  videoId?: string;
-  detail?: any;
-  spotify?: string;
-}
 
-export interface WordpressPage {
-  id: number;
-  date: string;
-  date_gmt: string;
-  guid: RenderedContent;
-  modified: string;
-  modified_gmt: string;
-  slug: string;
-  status: string;
-  type: string;
-  link: string;
-  title: RenderedContent;
-  content: RenderedContent;
-  excerpt: RenderedContent;
-  author: number;
-  featured_media: number;
-  parent: number;
-  menu_order: number;
-  comment_status: string;
-  ping_status: string;
-  template: string;
-  meta?: PageMatadata;
-  _links: any;
-}
-
-export interface PageMatadata {
-  video?: string;
-  spotify?: string;
-}
-
-export interface RenderedContent {
-  rendered: string;
-  protected?: boolean;
-}
 
 @Injectable({
   providedIn: 'root'
@@ -193,8 +149,28 @@ export class SongsService {
 
   songData(slug: string): Observable<Song> {
     const song: Song = this.songs.value.find(s => s.slug === slug);
+
     if (song.text) {
       return of(song);
+    }
+
+    const currentIndex = this.songs.value.indexOf(song);
+    let links = {};
+    if (currentIndex === 0) {
+      links = {
+        next: this.songs.value[currentIndex + 1].slug,
+        prev: this.songs.value[this.songs.value.length - 1].slug
+      };
+    } else if (currentIndex === this.songs.value.length - 1) {
+      links = {
+        next: this.songs.value[0].slug,
+        prev: this.songs.value[currentIndex - 1].slug
+      };
+    } else {
+      links = {
+        next: this.songs.value[currentIndex + 1].slug,
+        prev: this.songs.value[currentIndex - 1].slug
+      };
     }
 
     return this.http.get<WordpressPage>(`https://bertramvanalphen.nl/wp-json/wp/v2/pages/${this.getIdFromSlug(slug)}`).pipe(
@@ -204,7 +180,8 @@ export class SongsService {
           wpId: page.id,
           text: page.content.rendered,
           videoId: page.meta.video,
-          spotify: page.meta.spotify
+          spotify: page.meta.spotify,
+          links
         });
       })
     );

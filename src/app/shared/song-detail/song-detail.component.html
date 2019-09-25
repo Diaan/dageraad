@@ -1,10 +1,10 @@
-<button (click)="prev()">👈</button>
-<a [routerLink]="['/']">🙅‍♀️</a>
-<button (click)="next()">👉</button>
-
 <ng-container *ngIf="song | async; let song">
+  <button (click)="navigateTo(song?.links?.prev)">👈</button>
+  <a [routerLink]="['/']">🙅‍♀️</a>
+  <button (click)="navigateTo(song?.links?.next)">👉</button>
+
   <h1>{{song?.title}}</h1>
   <div [innerHTML]="song?.text"></div>
-  <!-- <app-youtube [id]="song?.videoId"></app-youtube>
-  <app-spotify [spotifyUri]="song?.spotify"></app-spotify> -->
+  <app-youtube *ngIf="song?.videoId" [id]="song?.videoId"></app-youtube>
+  <app-spotify *ngIf="song?.spotify" [spotifyUri]="song?.spotify"></app-spotify>
 </ng-container>
