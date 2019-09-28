@@ -1,5 +1,5 @@
 :host.paused #wheelgroup {
-  // animation-play-state: paused;
+  animation-play-state: paused;
 }
 
 svg{
@@ -21,9 +21,9 @@ svg{
       transition: transform 2s ease-in-out;
     }
 
-    path{
+    .song-area{
       // stroke: #000;
-      fill-opacity:0;
+      // fill-opacity:0;
       cursor: pointer;
       stroke-width: 2px;
       transform-origin: center center;
@@ -36,8 +36,6 @@ svg{
         // fill: url(#img1);
         // filter: url(#pictureFilter1);
         stroke: green;
-        z-index: 2;
-        transform: scale(1.2);
       }
 
       &.active{
@@ -48,7 +46,7 @@ svg{
 
   text {
     fill: var(--color3);
-    font-size: 140px;
+    font-size: 310px;
   }
 
   #part1 {
