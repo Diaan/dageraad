@@ -52,42 +52,54 @@ export class SongsService {
         slug: 'groen',
         title: 'Groen',
         trackNumber: 4,
-        rotation: 120
+        rotation: 120,
+        x: 2365,
+        y: 1776
       },
       {
         wpId: 1607,
         slug: 'dijk',
         title: 'Dijk',
         trackNumber: 5,
-        rotation: 150
+        rotation: 150,
+        x: 2216,
+        y: 2311
       },
       {
         wpId: 1607,
         slug: 'haven',
         title: 'Haven',
         trackNumber: 6,
-        rotation: 180
+        rotation: 180,
+        x: 1496,
+        y: 2484
       },
       {
         wpId: 1607,
         slug: 'gaan',
         title: 'Gaan',
         trackNumber: 7,
-        rotation: 210
+        rotation: 210,
+        x: 694,
+        y: 2277
       },
       {
         wpId: 1607,
         slug: 'wolven',
         title: 'Wolven',
         trackNumber: 8,
-        rotation: 240
+        rotation: 240,
+        x: 202,
+        y: 1584
       },
       {
         wpId: 1607,
         slug: 'holst',
         title: 'Holst',
         trackNumber: 9,
-        rotation: 270
+        rotation: 270,
+        x: 124,
+        y: 924
       },
       {
         wpId: 1607,
@@ -101,14 +113,18 @@ export class SongsService {
         slug: 'afgrond',
         title: 'Afgrond',
         trackNumber: 11,
-        rotation: 330
+        rotation: 330,
+        x: 541,
+        y: 1095
       },
       {
         wpId: 1607,
         slug: 'vogels',
         title: 'Vogels',
         trackNumber: 12,
-        rotation: 340
+        rotation: 340,
+        x: 360,
+        y: 439
       },
       {
         wpId: 1607,

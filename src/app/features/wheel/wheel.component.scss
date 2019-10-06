@@ -5,7 +5,8 @@
 svg{
   height: 100vmin;
   width: 100vmin;
-  transform: filter 1s ease;
+  // transform: filter 1s ease;
+  display: block;
 
   #wheelgroup {
     transform-origin: center center;
