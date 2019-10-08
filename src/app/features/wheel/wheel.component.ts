@@ -1,4 +1,4 @@
-import { Component, OnInit, HostBinding, Input } from '@angular/core';
+import { Component, OnInit, HostBinding, Input, ElementRef } from '@angular/core';
 import { SongsService } from 'src/app/core/songs.service';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
@@ -21,7 +21,7 @@ export class WheelComponent implements OnInit {
   @HostBinding('style') get myStyle(): SafeStyle {
     if (this.activeSong && this.activeSong.song) {
       return this.sanitizer.bypassSecurityTrustStyle(
-        `--rotation-deg: ${this.activeSong.song.rotation}deg;`
+        `--rotation: ${this.activeSong.song.rotation}deg;`
       );
     } else {
       return;
@@ -31,7 +31,8 @@ export class WheelComponent implements OnInit {
   constructor(
     private songsService: SongsService,
     private router: Router,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private element: ElementRef
   ) { }
 
   ngOnInit() {
@@ -43,10 +44,15 @@ export class WheelComponent implements OnInit {
   }
 
   pause() {
+    console.log('pause');
     this.paused = true;
   }
 
   play() {
     this.paused = false;
+  }
+
+  private setCssVar(key, value) {
+    this.element.nativeElement.style.setProperty(key, value);
   }
 }
