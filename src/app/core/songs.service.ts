@@ -25,7 +25,7 @@ export class SongsService {
         slug: 'blauwdruk',
         title: 'Blauwdruk',
         trackNumber: 1,
-        rotation: 30,
+        rotation: 318,
         x: 2589,
         y: 617
       },
@@ -34,7 +34,7 @@ export class SongsService {
         slug: 'morse',
         title: 'Morse',
         trackNumber: 2,
-        rotation: 60,
+        rotation: 299,
         x: 2597,
         y: 727
       },
@@ -43,7 +43,7 @@ export class SongsService {
         slug: 'schommel',
         title: 'Schommel',
         trackNumber: 3,
-        rotation: 90,
+        rotation: 277,
         x: 2459,
         y: 1114
       },
@@ -52,7 +52,7 @@ export class SongsService {
         slug: 'groen',
         title: 'Groen',
         trackNumber: 4,
-        rotation: 120,
+        rotation: 248,
         x: 2365,
         y: 1776
       },
@@ -61,7 +61,7 @@ export class SongsService {
         slug: 'dijk',
         title: 'Dijk',
         trackNumber: 5,
-        rotation: 150,
+        rotation: 226,
         x: 2216,
         y: 2311
       },
@@ -70,7 +70,7 @@ export class SongsService {
         slug: 'haven',
         title: 'Haven',
         trackNumber: 6,
-        rotation: 180,
+        rotation: 194,
         x: 1496,
         y: 2484
       },
@@ -79,7 +79,7 @@ export class SongsService {
         slug: 'gaan',
         title: 'Gaan',
         trackNumber: 7,
-        rotation: 210,
+        rotation: 148,
         x: 694,
         y: 2277
       },
@@ -88,7 +88,7 @@ export class SongsService {
         slug: 'wolven',
         title: 'Wolven',
         trackNumber: 8,
-        rotation: 240,
+        rotation: 116,
         x: 202,
         y: 1584
       },
@@ -97,7 +97,7 @@ export class SongsService {
         slug: 'holst',
         title: 'Holst',
         trackNumber: 9,
-        rotation: 270,
+        rotation: 73,
         x: 124,
         y: 924
       },
@@ -106,14 +106,14 @@ export class SongsService {
         slug: 'nacht',
         title: 'Nacht',
         trackNumber: 10,
-        rotation: 300
+        rotation: 78
       },
       {
         wpId: 1607,
         slug: 'afgrond',
         title: 'Afgrond',
         trackNumber: 11,
-        rotation: 330,
+        rotation: 82,
         x: 541,
         y: 1095
       },
@@ -122,7 +122,7 @@ export class SongsService {
         slug: 'vogels',
         title: 'Vogels',
         trackNumber: 12,
-        rotation: 340,
+        rotation: 49,
         x: 360,
         y: 439
       },
@@ -131,7 +131,7 @@ export class SongsService {
         slug: 'berg',
         title: 'Berg',
         trackNumber: 13,
-        rotation: 350,
+        rotation: 13,
         x: 1103,
         y: 42
       },
@@ -140,7 +140,7 @@ export class SongsService {
         slug: 'zomer',
         title: 'Zomer',
         trackNumber: 14,
-        rotation: 360,
+        rotation: 332,
         x: 2119,
         y: 390
       },
@@ -160,6 +160,7 @@ export class SongsService {
   }
 
   songData(slug: string): Observable<Song> {
+    console.log(slug);
     const song: Song = this.songs.value.find(s => s.slug === slug);
 
     if (song.text) {

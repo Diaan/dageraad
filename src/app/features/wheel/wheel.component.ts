@@ -1,4 +1,4 @@
-import { Component, OnInit, HostBinding, Input, ElementRef } from '@angular/core';
+import { Component, OnInit, HostBinding, Input, ElementRef, OnChanges } from '@angular/core';
 import { SongsService } from 'src/app/core/songs.service';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
@@ -10,7 +10,7 @@ import { Song } from 'src/app/models/song.model';
   templateUrl: './wheel.component.html',
   styleUrls: ['./wheel.component.scss']
 })
-export class WheelComponent implements OnInit {
+export class WheelComponent implements OnInit, OnChanges {
   songs$: Observable<Song[]>;
   paused = false;
 
@@ -18,25 +18,24 @@ export class WheelComponent implements OnInit {
   @HostBinding('class.paused') get isPaused() {
     return this.paused;
   }
-  @HostBinding('style') get myStyle(): SafeStyle {
-    if (this.activeSong && this.activeSong.song) {
-      return this.sanitizer.bypassSecurityTrustStyle(
-        `--rotation: ${this.activeSong.song.rotation}deg;`
-      );
-    } else {
-      return;
-    }
-  }
 
   constructor(
     private songsService: SongsService,
     private router: Router,
     private sanitizer: DomSanitizer,
-    private element: ElementRef
+    private element: ElementRef<HTMLElement>
   ) { }
 
   ngOnInit() {
     this.songs$ = this.songsService.songList();
+    this.setCssVar('--rotation', '0deg');
+  }
+
+  ngOnChanges() {
+    console.log('onchanges');
+    if (this.activeSong && this.activeSong.song) {
+      this.setCssVar('--rotation', this.activeSong.song.rotation + 'deg');
+    }
   }
 
   navigateTo(song: Song) {
@@ -44,7 +43,6 @@ export class WheelComponent implements OnInit {
   }
 
   pause() {
-    console.log('pause');
     this.paused = true;
   }
 
@@ -53,6 +51,7 @@ export class WheelComponent implements OnInit {
   }
 
   private setCssVar(key, value) {
+    console.log('set', key, 'to', value);
     this.element.nativeElement.style.setProperty(key, value);
   }
 }

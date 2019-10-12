@@ -1,9 +1,6 @@
 :host.paused #wheelgroup.rotating {
   animation-play-state: paused;
 }
-:host{
-  --rotation: 0deg;
-}
 
 svg{
   height: 100vmin;
@@ -17,10 +14,14 @@ svg{
 
     &.animate {
       transition: transform 1s ease-in-out;
+      // stroke-width: 2px;
+      // stroke: aqua;
     }
 
     &.rotating {
       animation: rotation 60s infinite linear;
+      // stroke-width: 2px;
+      // stroke: red;
     }
 
     .song-area{
@@ -51,15 +52,15 @@ svg{
 
 @keyframes rotation {
   from {
-    transform: rotate(0deg);
+    transform: rotate(calc(var(--rotation)));
   }
   to {
-    transform: rotate(359deg);
+    transform: rotate(calc(var(--rotation) + 359deg));
   }
 }
 
 @keyframes rotate-to {
   to {
-    transform: rotate(var(--rotation-deg));
+    transform: rotate(var(--rotation));
   }
 }

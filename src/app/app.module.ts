@@ -16,7 +16,7 @@ const routes: Routes = [
     path: 'song/:slug',
     resolve: { song: SongResolver },
     component: SongDetailComponent,
-    data: {animation: 'song'}
+    data: { animation: 'song' }
   }
 ];
 
