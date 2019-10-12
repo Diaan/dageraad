@@ -1,4 +1,4 @@
-import { Component, OnInit, HostBinding, Input, ElementRef, OnChanges } from '@angular/core';
+import { Component, OnInit, HostBinding, Input, ElementRef, OnChanges, ViewChild } from '@angular/core';
 import { SongsService } from 'src/app/core/songs.service';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
@@ -13,28 +13,35 @@ import { Song } from 'src/app/models/song.model';
 export class WheelComponent implements OnInit, OnChanges {
   songs$: Observable<Song[]>;
   paused = false;
+  currentRotation: number;
+  rotating: boolean;
+  animate: boolean;
 
   @Input() activeSong: { song: Song };
   @HostBinding('class.paused') get isPaused() {
     return this.paused;
   }
 
+  @ViewChild('wheelGroup', { static: true })
+  wheelGroup: ElementRef<HTMLElement>;
+
   constructor(
     private songsService: SongsService,
     private router: Router,
-    private sanitizer: DomSanitizer,
     private element: ElementRef<HTMLElement>
   ) { }
 
   ngOnInit() {
     this.songs$ = this.songsService.songList();
     this.setCssVar('--rotation', '0deg');
+    this.rotating = true;
   }
 
   ngOnChanges() {
-    console.log('onchanges');
     if (this.activeSong && this.activeSong.song) {
-      this.setCssVar('--rotation', this.activeSong.song.rotation + 'deg');
+      this.setRotation(this.activeSong.song.rotation);
+    } else {
+      this.rotating = true;
     }
   }
 
@@ -50,8 +57,42 @@ export class WheelComponent implements OnInit, OnChanges {
     this.paused = false;
   }
 
+  private setRotation(rotation) {
+    // freeze current rotation; read from keyframe, set css property:
+    const currentTransform = this.getRotationDegrees(window.getComputedStyle(this.wheelGroup.nativeElement).transform);
+    this.setCssVar('--rotation', currentTransform + 'deg');
+    this.rotating = false;
+
+    this.currentRotation = currentTransform;
+    if (Math.abs(rotation - this.currentRotation) > 180) {
+      this.animate = false;
+      if (this.currentRotation > rotation) {
+        this.setCssVar('--rotation', (this.currentRotation - 360) + 'deg');
+      } else {
+        this.setCssVar('--rotation', (this.currentRotation + 360) + 'deg');
+      }
+    }
+    setTimeout(() => {
+      this.animate = true;
+      this.setCssVar('--rotation', rotation + 'deg');
+    }, 100);
+  }
+
   private setCssVar(key, value) {
-    console.log('set', key, 'to', value);
     this.element.nativeElement.style.setProperty(key, value);
+  }
+
+  private getRotationDegrees(matrix) {
+    if (!matrix) {
+      return 0;
+    }
+    const values = matrix.split('(')[1].split(')')[0].split(',');
+    const a = values[0];
+    const b = values[1];
+    let angle = Math.round(Math.atan2(b, a) * (180 / Math.PI));
+    if (angle < 0) {
+      angle += 360;
+    }
+    return angle;
   }
 }

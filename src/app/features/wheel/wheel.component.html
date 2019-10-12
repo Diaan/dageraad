@@ -2,7 +2,7 @@
   xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/"
   style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
   <rect x="0" y="0" width="3543" height="3543" style="fill:url(#background);" />
-  <g id="wheelgroup" [class.rotating]="!activeSong?.song" [class.animate]="!!activeSong?.song">
+  <g #wheelGroup id="wheelgroup" [class.rotating]="rotating" [class.animate]="animate">
     <use class="song-area" *ngFor="let song of (songs$ | async)" [attr.xlink:href]="'#'+song.slug" [attr.x]="song.x"
       [attr.y]="song.y" [class.active]="song === activeSong" (click)="navigateTo(song)" (mouseenter)="pause()"
       (mouseleave)="play()" />
