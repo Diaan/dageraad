@@ -4,55 +4,55 @@
   <rect x="0" y="0" width="3543" height="3543" style="fill:url(#background);" />
   <g #wheelGroup id="wheelgroup" [class.rotating]="rotating" [class.animate]="animate">
     <use class="song-area" *ngFor="let song of (songs$ | async)" [attr.xlink:href]="'#'+song.slug" [attr.x]="song.x"
-      [attr.y]="song.y" [class.active]="song === activeSong" (click)="navigateTo(song)" (mouseenter)="pause()"
+      [attr.y]="song.y" [class.active]="song === activeSong.song" (click)="navigateTo(song)" (mouseenter)="pause()"
       (mouseleave)="play()" />
   </g>
   <text x="1120" y="1785">Dageraad</text>
   <defs>
 
     <pattern id="blauwdrukimg" patternUnits="userSpaceOnUse" width="233px" height="205px">
-      <image width="233px" height="205px" x="0" y="0" xlink:href="/assets/images/blauwdruk.png"></image>
+      <image width="233px" height="205px" x="0" y="0" xlink:href="/assets/images/1x/blauwdruk.png"></image>
     </pattern>
     <pattern id="morseimg" patternUnits="userSpaceOnUse" width="703px" height="825px">
-      <image width="703px" height="825px" x="0" y="0" xlink:href="/assets/images/morse.png"></image>
+      <image width="703px" height="825px" x="0" y="0" xlink:href="/assets/images/1x/morse.png"></image>
     </pattern>
     <pattern id="schommelimg" patternUnits="userSpaceOnUse" width="948px" height="1153px">
-      <image width="948px" height="1153px" x="0" y="0" xlink:href="/assets/images/schommel.png"></image>
+      <image width="948px" height="1153px" x="0" y="0" xlink:href="/assets/images/1x/schommel.png"></image>
     </pattern>
     <pattern id="groenimg" patternUnits="userSpaceOnUse" width="996px" height="1011px">
-      <image width="996px" height="1011px" x="0" y="0" xlink:href="/assets/images/groen.png"></image>
+      <image width="996px" height="1011px" x="0" y="0" xlink:href="/assets/images/1x/groen.png"></image>
     </pattern>
     <pattern id="dijkimg" patternUnits="userSpaceOnUse" width="926px" height="759px">
-      <image width="926px" height="759px" x="0" y="0" xlink:href="/assets/images/dijk.png"></image>
+      <image width="926px" height="759px" x="0" y="0" xlink:href="/assets/images/1x/dijk.png"></image>
     </pattern>
     <pattern id="havenimg" patternUnits="userSpaceOnUse" width="1174px" height="1014px">
-      <image width="1174px" height="1014px" x="0" y="0" xlink:href="/assets/images/haven.png"></image>
+      <image width="1174px" height="1014px" x="0" y="0" xlink:href="/assets/images/1x/haven.png"></image>
     </pattern>
     <pattern id="gaanimg" patternUnits="userSpaceOnUse" width="1090px" height="1051px">
-      <image width="1090px" height="1051px" x="0" y="0" xlink:href="/assets/images/gaan.png"></image>
+      <image width="1090px" height="1051px" x="0" y="0" xlink:href="/assets/images/1x/gaan.png"></image>
     </pattern>
     <pattern id="wolvenimg" patternUnits="userSpaceOnUse" width="921px" height="1395px">
-      <image width="921px" height="1395px" x="0" y="0" xlink:href="/assets/images/wolven.png"></image>
+      <image width="921px" height="1395px" x="0" y="0" xlink:href="/assets/images/1x/wolven.png"></image>
     </pattern>
     <pattern id="holstimg" patternUnits="userSpaceOnUse" width="563px" height="805px">
-      <image width="563px" height="805px" x="0" y="0" xlink:href="/assets/images/holst.png"></image>
+      <image width="563px" height="805px" x="0" y="0" xlink:href="/assets/images/1x/holst.png"></image>
     </pattern>
     <pattern id="nachtimg" patternUnits="userSpaceOnUse" width="233px" height="205px">
-      <!-- <image width="233px" height="205px" x="0" y="0" xlink:href="/assets/images/nacht.png"></image> -->
+      <!-- <image width="233px" height="205px" x="0" y="0" xlink:href="/assets/images/1x/nacht.png"></image> -->
       <image width="233px" height="205px" x="0" y="0"
         xlink:href="https://via.placeholder.com/150/0000FF/808080?Text=nacht"></image>
     </pattern>
     <pattern id="afgrondimg" patternUnits="userSpaceOnUse" width="710px" height="1340px">
-      <image width="710px" height="1340px" x="0" y="0" xlink:href="/assets/images/afgrond.png"></image>
+      <image width="710px" height="1340px" x="0" y="0" xlink:href="/assets/images/1x/afgrond.png"></image>
     </pattern>
     <pattern id="vogelsimg" patternUnits="userSpaceOnUse" width="802px" height="844px">
-      <image width="802px" height="844px" x="0" y="0" xlink:href="/assets/images/vogels.png"></image>
+      <image width="802px" height="844px" x="0" y="0" xlink:href="/assets/images/1x/vogels.png"></image>
     </pattern>
     <pattern id="bergimg" patternUnits="userSpaceOnUse" width="1142px" height="1044px">
-      <image width="1142px" height="1044px" x="0" y="0" xlink:href="/assets/images/berg.png"></image>
+      <image width="1142px" height="1044px" x="0" y="0" xlink:href="/assets/images/1x/berg.png"></image>
     </pattern>
     <pattern id="zomerimg" patternUnits="userSpaceOnUse" width="679px" height="824px">
-      <image width="679px" height="824px" x="0" y="0" xlink:href="/assets/images/zomer.png"></image>
+      <image width="679px" height="824px" x="0" y="0" xlink:href="/assets/images/1x/zomer.png"></image>
     </pattern>
 
     <path id="blauwdruk" style="fill:url(#blauwdrukimg)"

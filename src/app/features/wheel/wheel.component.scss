@@ -14,26 +14,22 @@ svg{
 
     &.animate {
       transition: transform 1s ease-in-out;
-      // stroke-width: 2px;
-      // stroke: aqua;
+      :not(.active){
+        opacity: 0.2;
+      }
     }
 
     &.rotating {
       animation: rotation 60s infinite linear;
-      // stroke-width: 2px;
-      // stroke: red;
     }
 
     .song-area{
       cursor: pointer;
       stroke-width: 2px;
       transform-origin: center center;
-      transition: transform 1s ease;
+      transition: opacity 1s ease-in-out;
+      opacity: 1;
       z-index: 1;
-
-      &:hover{
-        stroke: green;
-      }
     }
   }
 
