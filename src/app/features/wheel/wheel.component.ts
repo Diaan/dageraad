@@ -41,6 +41,7 @@ export class WheelComponent implements OnInit, OnChanges {
     if (this.activeSong && this.activeSong.song) {
       this.setRotation(this.activeSong.song.rotation);
     } else {
+      this.animate = false;
       this.rotating = true;
     }
   }

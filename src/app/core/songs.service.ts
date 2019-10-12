@@ -131,7 +131,7 @@ export class SongsService {
         slug: 'berg',
         title: 'Berg',
         trackNumber: 13,
-        rotation: 13,
+        rotation: 6,
         x: 1103,
         y: 42
       },
@@ -140,7 +140,7 @@ export class SongsService {
         slug: 'zomer',
         title: 'Zomer',
         trackNumber: 14,
-        rotation: 332,
+        rotation: 329,
         x: 2119,
         y: 390
       },
@@ -159,8 +159,11 @@ export class SongsService {
     return updated.find(s => s.slug === slug);
   }
 
+  minimalSongData(slug: string): Song {
+    return this.songs.value.find(s => s.slug === slug);
+  }
+
   songData(slug: string): Observable<Song> {
-    console.log(slug);
     const song: Song = this.songs.value.find(s => s.slug === slug);
 
     if (song.text) {

@@ -9,8 +9,8 @@ import { Song } from '../models/song.model';
 export class SongResolver implements Resolve<Song> {
   constructor(private service: SongsService) { }
 
-  resolve(route: ActivatedRouteSnapshot): Observable<Song> {
+  resolve(route: ActivatedRouteSnapshot): Song {
     const slug = route.paramMap.get('slug');
-    return this.service.songData(slug);
+    return this.service.minimalSongData(slug);
   }
 }

@@ -4,8 +4,8 @@
   <rect x="0" y="0" width="3543" height="3543" style="fill:url(#background);" />
   <g #wheelGroup id="wheelgroup" [class.rotating]="rotating" [class.animate]="animate">
     <use class="song-area" *ngFor="let song of (songs$ | async)" [attr.xlink:href]="'#'+song.slug" [attr.x]="song.x"
-      [attr.y]="song.y" [class.active]="song === activeSong.song" (click)="navigateTo(song)" (mouseenter)="pause()"
-      (mouseleave)="play()" />
+      [attr.y]="song.y" [class.active]="activeSong.song && (song.slug === activeSong.song.slug)"
+      (click)="navigateTo(song)" (mouseenter)="pause()" (mouseleave)="play()" />
   </g>
   <text x="1120" y="1785">Dageraad</text>
   <defs>

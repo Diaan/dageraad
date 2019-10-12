@@ -65,3 +65,9 @@ button {
   border: 0;
   -webkit-appearance: none;
 }
+
+:focus {
+  // TODO: beter manier om dit er mooi uit te laten zien
+  // outline: -webkit-focus-ring-color auto 1px;
+  outline: none;
+}

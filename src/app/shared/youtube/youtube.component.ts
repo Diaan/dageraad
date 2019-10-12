@@ -14,7 +14,6 @@ export class YoutubeComponent implements OnInit {
   constructor(private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
-    console.log('init', this.id);
     this.embedUrl = this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube-nocookie.com/embed/' + this.id);
   }
 }
