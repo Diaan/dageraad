@@ -1,13 +1,27 @@
 @import './styles/reset';
 
-/* You can add global styles to this file, and also import other style files */
-// @import url('https://fonts.googleapis.com/css?family=BioRhyme');
-//https://www.youworkforthem.com/font/T7991/crimsons/webfont
-// TypeType - TT Crimsons Light.ttf
-// TypeType - TTCrimsons-Light.otf
 @font-face {
-  font-family: "Crimsons";
-  src: url("/assets/fonts/crimsons-light.woff2") format("woff2");
+	font-family: 'Crimsons-Regular';
+	src: url('assets/fonts/regular/crimsons-regular.eot');
+	src: url('assets/fonts/regular/crimsons-regular.eot?#iefix') format('embedded-opentype'),
+             url('assets/fonts/regular/crimsons-regular.woff2') format('woff2'),
+	     url('assets/fonts/regular/crimsons-regular.woff') format('woff'),
+	     url('assets/fonts/regular/crimsons-regular.ttf') format('truetype'),
+	     url('assets/fonts/regular/crimsons-regular.svg#youworkforthem') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Crimsons-Light';
+	src: url('assets/fonts/light/crimsons-light.eot');
+	src: url('assets/fonts/light/crimsons-light.eot?#iefix') format('embedded-opentype'),
+             url('assets/fonts/light/crimsons-light.woff2') format('woff2'),
+	     url('assets/fonts/light/crimsons-light.woff') format('woff'),
+	     url('assets/fonts/light/crimsons-light.ttf') format('truetype'),
+	     url('assets/fonts/light/crimsons-light.svg#youworkforthem') format('svg');
+	font-weight: normal;
+	font-style: normal;
 }
 
 body{
@@ -27,7 +41,7 @@ html, body {
 
 body{
   color: var(--color3);
-  font: 24px/40px Crimsons;
+  font: 24px/40px 'Crimsons-Light';
   display: flex;
   justify-content: center;
   align-items: center;

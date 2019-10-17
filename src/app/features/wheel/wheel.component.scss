@@ -11,6 +11,7 @@ svg{
     transform-origin: center center;
     will-change: transform;
     transform: rotate(var(--rotation));
+    transform-origin: 50% 50%;
 
     &.animate {
       transition: transform 1s ease-in-out;
@@ -20,7 +21,7 @@ svg{
     }
 
     &.rotating {
-      animation: rotation 60s infinite linear;
+      animation: rotation 20s infinite linear;
     }
 
     .song-area{
