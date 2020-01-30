@@ -39,22 +39,22 @@ export class SongsService {
         y: 727
       },
       {
-        wpId: 1607,
-        slug: 'schommel',
-        title: 'Schommel',
+        wpId: 1678,
+        slug: 'berg',
+        title: 'Berg',
         trackNumber: 3,
-        rotation: 277,
-        x: 2459,
-        y: 1114
+        rotation: 6,
+        x: 1103,
+        y: 42
       },
       {
         wpId: 1607,
-        slug: 'groen',
-        title: 'Groen',
+        slug: 'zomer',
+        title: 'Zomer',
         trackNumber: 4,
-        rotation: 248,
-        x: 2365,
-        y: 1776
+        rotation: 329,
+        x: 2119,
+        y: 390
       },
       {
         wpId: 1607,
@@ -67,9 +67,18 @@ export class SongsService {
       },
       {
         wpId: 1607,
+        slug: 'groen',
+        title: 'Groen',
+        trackNumber: 6,
+        rotation: 248,
+        x: 2365,
+        y: 1776
+      },
+      {
+        wpId: 1607,
         slug: 'haven',
         title: 'Haven',
-        trackNumber: 6,
+        trackNumber: 7,
         rotation: 194,
         x: 1496,
         y: 2484
@@ -78,25 +87,25 @@ export class SongsService {
         wpId: 1607,
         slug: 'gaan',
         title: 'Gaan',
-        trackNumber: 7,
+        trackNumber: 8,
         rotation: 148,
         x: 694,
         y: 2277
       },
       {
-        wpId: 1607,
+        wpId: 1677,
         slug: 'wolven',
         title: 'Wolven',
-        trackNumber: 8,
+        trackNumber: 9,
         rotation: 116,
         x: 202,
         y: 1584
       },
       {
         wpId: 1607,
-        slug: 'holst',
-        title: 'Holst',
-        trackNumber: 9,
+        slug: 'kooi',
+        title: 'Kooi',
+        trackNumber: 10,
         rotation: 73,
         x: 124,
         y: 924
@@ -105,17 +114,8 @@ export class SongsService {
         wpId: 1607,
         slug: 'nacht',
         title: 'Nacht',
-        trackNumber: 10,
-        rotation: 78
-      },
-      {
-        wpId: 1607,
-        slug: 'afgrond',
-        title: 'Afgrond',
         trackNumber: 11,
-        rotation: 82,
-        x: 541,
-        y: 1095
+        rotation: 78
       },
       {
         wpId: 1607,
@@ -125,24 +125,6 @@ export class SongsService {
         rotation: 49,
         x: 360,
         y: 439
-      },
-      {
-        wpId: 1607,
-        slug: 'berg',
-        title: 'Berg',
-        trackNumber: 13,
-        rotation: 6,
-        x: 1103,
-        y: 42
-      },
-      {
-        wpId: 1607,
-        slug: 'zomer',
-        title: 'Zomer',
-        trackNumber: 14,
-        rotation: 329,
-        x: 2119,
-        y: 390
       },
     ]);
 
@@ -197,6 +179,7 @@ export class SongsService {
           text: page.content.rendered,
           videoId: page.meta.video,
           spotify: page.meta.spotify,
+          credits: page.meta.credits,
           links
         });
       })

@@ -12,6 +12,7 @@ export interface Song {
   videoId?: string;
   detail?: any;
   spotify?: string;
+  credits?: string;
   links?: {
     next: string;
     prev: string;
@@ -46,6 +47,7 @@ export interface WordpressPage {
 export interface PageMatadata {
   video?: string;
   spotify?: string;
+  credits?: string;
 }
 
 export interface RenderedContent {
