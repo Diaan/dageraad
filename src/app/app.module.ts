@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { APP_BASE_HREF } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WheelComponent } from './features/wheel/wheel.component';
@@ -35,7 +36,10 @@ const routes: Routes = [
     BrowserAnimationsModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [SongResolver],
+  providers: [
+    { provide: APP_BASE_HREF, useValue: '/' },
+    SongResolver
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
