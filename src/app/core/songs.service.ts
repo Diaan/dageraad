@@ -26,8 +26,8 @@ export class SongsService {
         title: 'Blauwdruk',
         trackNumber: 1,
         rotation: 318,
-        x: 2589,
-        y: 617
+        x: 2119,
+        y: 390
       },
       {
         wpId: 1609,
@@ -53,8 +53,8 @@ export class SongsService {
         title: 'Zomer',
         trackNumber: 4,
         rotation: 329,
-        x: 2119,
-        y: 390
+        x: 2459,
+        y: 1114
       },
       {
         wpId: 1607,
@@ -107,15 +107,17 @@ export class SongsService {
         title: 'Kooi',
         trackNumber: 10,
         rotation: 73,
-        x: 124,
-        y: 924
+        x: 209,
+        y: 1415
       },
       {
         wpId: 1607,
         slug: 'nacht',
         title: 'Nacht',
         trackNumber: 11,
-        rotation: 78
+        rotation: 78,
+        x: 236,
+        y: 919
       },
       {
         wpId: 1607,

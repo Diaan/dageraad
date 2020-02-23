@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { SafeUrl, DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
@@ -6,14 +6,14 @@ import { SafeUrl, DomSanitizer, SafeResourceUrl } from '@angular/platform-browse
   templateUrl: './youtube.component.html',
   styleUrls: ['./youtube.component.scss']
 })
-export class YoutubeComponent implements OnInit {
+export class YoutubeComponent implements OnChanges {
   embedUrl: SafeResourceUrl;
 
   @Input() id: string;
 
   constructor(private sanitizer: DomSanitizer) { }
 
-  ngOnInit() {
-    this.embedUrl = this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube-nocookie.com/embed/' + this.id);
+  ngOnChanges() {
+    this.embedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube-nocookie.com/embed/${this.id}?modestbranding=1`);
   }
 }

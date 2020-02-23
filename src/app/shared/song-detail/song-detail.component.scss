@@ -1,8 +1,10 @@
 :host{
   display: block;
   width: 80vw;
-  height: 65vh;
+  height: calc(100vh - 37vmin);
   background-color: var(--color6);
+  border-top-left-radius: 80px 32px;
+  border-top-right-radius: 80px 32px;
 
   position: absolute;
   bottom:0;
@@ -50,12 +52,19 @@ a {
   position: absolute;
   right: 40px;
   top: 24px;
+  display: flex;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  background: var(--color3);
+  justify-content: center;
+  align-items: center;
 }
 
 a svg{
   width: 16px;
   height: 16px;
-  fill: var(--color4);
+  fill: var(--color6);
 }
 
 section {
