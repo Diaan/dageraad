@@ -21,6 +21,15 @@ export class SongsService {
   songList(): Observable<Song[]> {
     this.songs.next([
       {
+        wpId: 1678,
+        slug: 'berg',
+        title: 'Berg',
+        trackNumber: 3,
+        rotation: 6,
+        x: 1103,
+        y: 42
+      },
+      {
         wpId: 1607,
         slug: 'blauwdruk',
         title: 'Blauwdruk',
@@ -39,34 +48,16 @@ export class SongsService {
         y: 727
       },
       {
-        wpId: 1678,
-        slug: 'berg',
-        title: 'Berg',
-        trackNumber: 3,
-        rotation: 6,
-        x: 1103,
-        y: 42
-      },
-      {
-        wpId: 1607,
+        wpId: 1680,
         slug: 'zomer',
         title: 'Zomer',
         trackNumber: 4,
-        rotation: 329,
+        rotation: 278,
         x: 2459,
         y: 1114
       },
       {
-        wpId: 1607,
-        slug: 'dijk',
-        title: 'Dijk',
-        trackNumber: 5,
-        rotation: 226,
-        x: 2216,
-        y: 2311
-      },
-      {
-        wpId: 1607,
+        wpId: 1703,
         slug: 'groen',
         title: 'Groen',
         trackNumber: 6,
@@ -75,7 +66,16 @@ export class SongsService {
         y: 1776
       },
       {
-        wpId: 1607,
+        wpId: 1705,
+        slug: 'dijk',
+        title: 'Dijk',
+        trackNumber: 5,
+        rotation: 226,
+        x: 2216,
+        y: 2311
+      },
+      {
+        wpId: 1679,
         slug: 'haven',
         title: 'Haven',
         trackNumber: 7,
@@ -84,11 +84,11 @@ export class SongsService {
         y: 2484
       },
       {
-        wpId: 1607,
+        wpId: 1707,
         slug: 'gaan',
         title: 'Gaan',
         trackNumber: 8,
-        rotation: 148,
+        rotation: 151,
         x: 694,
         y: 2277
       },
@@ -102,25 +102,25 @@ export class SongsService {
         y: 1584
       },
       {
-        wpId: 1607,
+        wpId: 1709,
         slug: 'kooi',
         title: 'Kooi',
         trackNumber: 10,
-        rotation: 73,
+        rotation: 94,
         x: 209,
         y: 1415
       },
       {
-        wpId: 1607,
+        wpId: 1711,
         slug: 'nacht',
         title: 'Nacht',
         trackNumber: 11,
-        rotation: 78,
+        rotation: 66,
         x: 236,
         y: 919
       },
       {
-        wpId: 1607,
+        wpId: 1713,
         slug: 'vogels',
         title: 'Vogels',
         trackNumber: 12,
