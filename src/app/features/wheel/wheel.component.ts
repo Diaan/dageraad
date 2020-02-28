@@ -21,6 +21,9 @@ export class WheelComponent implements OnInit, OnChanges {
   @HostBinding('class.paused') get isPaused() {
     return this.paused;
   }
+  @HostBinding('class.active') get isActive() {
+    return !!this.activeSong.song;
+  }
 
   @ViewChild('wheelGroup', { static: true })
   wheelGroup: ElementRef<HTMLElement>;

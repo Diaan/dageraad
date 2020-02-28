@@ -16,7 +16,7 @@ import { trigger, transition, query, style, animate } from '@angular/animations'
         ),
         query(
           ':leave',
-           [style({ transform: 'translateY(0)' }), animate('1s', style({ transform: 'translateY(100%)' }))],
+          [style({ transform: 'translateY(0)' }), animate('1s', style({ transform: 'translateY(100%)' }))],
           { optional: true }
         ),
         query(
@@ -28,6 +28,7 @@ import { trigger, transition, query, style, animate } from '@angular/animations'
     ])
   ]
 })
+
 export class AppComponent {
   prepareRoute(outlet: RouterOutlet) {
     return outlet && outlet.activatedRouteData && outlet.activatedRouteData.animation;

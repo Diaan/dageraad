@@ -37,14 +37,15 @@ body{
 html, body {
   background-color: rgb(254,247,193);
   overflow: hidden;
+  height: 100%;
 }
 
 body{
   color: var(--color3);
   font: 24px/40px 'Crimsons-Light';
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
 }
 
 

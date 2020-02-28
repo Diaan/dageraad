@@ -27,16 +27,18 @@ export class SongsService {
         trackNumber: 3,
         rotation: 6,
         x: 1103,
-        y: 42
+        y: 42,
+        color: '#1D3F4E'
       },
       {
         wpId: 1607,
         slug: 'blauwdruk',
         title: 'Blauwdruk',
         trackNumber: 1,
-        rotation: 318,
+        rotation: 324,
         x: 2119,
-        y: 390
+        y: 390,
+        color: '#1B3D5B'
       },
       {
         wpId: 1609,
@@ -45,7 +47,8 @@ export class SongsService {
         trackNumber: 2,
         rotation: 299,
         x: 2597,
-        y: 727
+        y: 727,
+        color: '#4A0A02'
       },
       {
         wpId: 1680,
@@ -54,7 +57,8 @@ export class SongsService {
         trackNumber: 4,
         rotation: 278,
         x: 2459,
-        y: 1114
+        y: 1114,
+        color: '#3E4D01'
       },
       {
         wpId: 1703,
@@ -63,7 +67,8 @@ export class SongsService {
         trackNumber: 6,
         rotation: 248,
         x: 2365,
-        y: 1776
+        y: 1776,
+        color: '#10331E'
       },
       {
         wpId: 1705,
@@ -72,7 +77,8 @@ export class SongsService {
         trackNumber: 5,
         rotation: 226,
         x: 2216,
-        y: 2311
+        y: 2311,
+        color: '#224F5A'
       },
       {
         wpId: 1679,
@@ -81,7 +87,8 @@ export class SongsService {
         trackNumber: 7,
         rotation: 194,
         x: 1496,
-        y: 2484
+        y: 2484,
+        color: '#00313E'
       },
       {
         wpId: 1707,
@@ -90,7 +97,8 @@ export class SongsService {
         trackNumber: 8,
         rotation: 151,
         x: 694,
-        y: 2277
+        y: 2277,
+        color: '#41293C'
       },
       {
         wpId: 1677,
@@ -99,7 +107,8 @@ export class SongsService {
         trackNumber: 9,
         rotation: 116,
         x: 202,
-        y: 1584
+        y: 1584,
+        color: '#4C0912'
       },
       {
         wpId: 1709,
@@ -108,7 +117,8 @@ export class SongsService {
         trackNumber: 10,
         rotation: 94,
         x: 209,
-        y: 1415
+        y: 1415,
+        color: '#3D1831'
       },
       {
         wpId: 1711,
@@ -117,7 +127,8 @@ export class SongsService {
         trackNumber: 11,
         rotation: 66,
         x: 236,
-        y: 919
+        y: 919,
+        color: '#003556'
       },
       {
         wpId: 1713,
@@ -126,7 +137,8 @@ export class SongsService {
         trackNumber: 12,
         rotation: 49,
         x: 360,
-        y: 439
+        y: 439,
+        color: '#183242'
       },
     ]);
 

@@ -3,6 +3,7 @@ export interface Song {
   slug: string;
   title: string;
   trackNumber: number;
+  color: string;
   imageUrl?: string;
   x?: number;
   y?: number;

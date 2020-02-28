@@ -2,6 +2,16 @@
   animation-play-state: paused;
 }
 
+:host {
+  display: block;
+  will-change: transform;
+  transform: translateY(calc(50vh - 50vmin));
+  transition: transform 1s ease-in-out;
+}
+:host.active {
+  transform: translateY(0);
+}
+
 svg{
   height: 100vmin;
   width: 100vmin;
@@ -21,7 +31,7 @@ svg{
     }
 
     &.rotating {
-      animation: rotation 20s infinite linear;
+      animation: rotation 60s infinite linear;
     }
 
     .song-area{
@@ -37,13 +47,6 @@ svg{
   text {
     fill: var(--color3);
     font-size: 310px;
-  }
-
-  #part1 {
-    transform-origin: 660px 260px;
-  }
-  #part1:hover {
-    transform: scale(1.2);
   }
 }
 

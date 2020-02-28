@@ -1,8 +1,8 @@
 import { SongsService } from 'src/app/core/songs.service';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, HostBinding } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map, shareReplay, switchMap, tap } from 'rxjs/operators';
+import { shareReplay, switchMap, tap } from 'rxjs/operators';
 import { Song } from 'src/app/models/song.model';
 
 @Component({
@@ -12,9 +12,14 @@ import { Song } from 'src/app/models/song.model';
 })
 export class SongDetailComponent implements OnInit {
   song: Observable<Song>;
+  bgcolor: string;
 
   @Output() nextEvent = new EventEmitter<any>();
   @Output() prevEvent = new EventEmitter<any>();
+
+  @HostBinding('style.--pop-up-color') get myStyle(): string {
+    return this.bgcolor;
+  }
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -25,7 +30,9 @@ export class SongDetailComponent implements OnInit {
   ngOnInit() {
     this.song = this.activatedRoute.params.pipe(
       switchMap(paramData => this.songsService.songData(paramData.slug)),
-      shareReplay()
+      shareReplay(),
+      tap(song => this.bgcolor = song.color)
+
     );
   }
 
