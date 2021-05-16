@@ -4,8 +4,8 @@
   height: calc(100vh - 37vmin);
   background-color: var(--pop-up-color, var(--color6));
   transition: background-color 0.5s ease-in-out;
-  border-top-left-radius: 80px 32px;
-  border-top-right-radius: 80px 32px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
   will-change: background-color;
 
   position: absolute;
@@ -21,61 +21,61 @@
   }
 }
 
-h1 {
-  font: 550 32px/2 Crimsons-Regular;
+header {
+  display: flex;
   position: absolute;
-  top: -2em;
-  left: calc(50% - 5em);
-  width: 10em;
+  top: -2.1em;
+  left: calc(50% - 7em);
+  width: 14em;
   background-color: var(--pop-up-color, var(--color6));
   will-change: background-color;
   transition: background-color 0.5s ease-in-out;
-  border-top-left-radius: 50% 100%;
-  border-top-right-radius: 50% 100%;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
   text-align: center;
-  padding-top: 1em;
+  padding: 0 8px;
+  gap: 8px;
+}
+
+h1 {
+  font: 550 calc(32px + 0.7vw)/2.5 Crimsons-Regular;
   color: var(--color6);
+  flex: 1 1 auto;
 }
 
-.button-next {
-  position: absolute;
-  right: calc(50% - 25vw);
-  top: -150px;
-  transform: rotate(30deg);
-  z-index: 1;
-}
-
-.button-prev {
-  left: calc(50% - 25vw);
-  position: absolute;
-  top: -150px;
-  transform: rotate(330deg);
-  z-index: 1;
+button {
+  flex: 0 0 32px;
 }
 
 button svg{
-  width: 50px;
-  height: 50px;
-  fill: var(--color2);
+  width: 32px;
+  height: 32px;
+  fill: #fff;
+  opacity: 0.6 ;
+}
+button:hover svg {
+  opacity: 0.8;
 }
 
 a {
   position: absolute;
   right: 40px;
-  top: 24px;
+  top: 28px;
   display: flex;
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
-  background: var(--color3);
+  width: 24px;
+  height: 24px;
   justify-content: center;
   align-items: center;
 }
 
 a svg{
-  width: 16px;
-  height: 16px;
-  fill: var(--color6);
+  width: 24px;
+  height: 24px;
+  fill: #fff;
+  opacity: 0.6 ;
+}
+button:hover svg {
+  opacity: 0.8;
 }
 
 section {
@@ -97,7 +97,7 @@ section {
   }
 
   .credits {
-    font-size: calc(12px + 0.5vw);
+    font-size: calc(10px + 0.5vw);
     grid-area: credits;
     line-height: calc(1.1em + 0.5vw);
     margin-bottom: 0.5em;
@@ -107,7 +107,7 @@ section {
     grid-area: lyrics;
 
     ::ng-deep p {
-      font-size: calc(14px + 0.7vw);
+      font-size: calc(12px + 0.7vw);
       line-height: calc(1.1em + 0.5vw);
       margin-bottom: 1em;
     }
