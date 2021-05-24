@@ -11,6 +11,7 @@ export interface Song {
   rotation?: number;
   text?: string;
   videoId?: string;
+  podcastId?: string;
   detail?: any;
   spotify?: string;
   credits?: string;
@@ -49,6 +50,7 @@ export interface PageMatadata {
   video?: string;
   spotify?: string;
   credits?: string;
+  podcast?: string;
 }
 
 export interface RenderedContent {

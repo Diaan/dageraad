@@ -47,6 +47,10 @@ svg{
   text {
     fill: var(--color3);
     font-size: 310px;
+
+    &.name {
+      font-size: 130px;
+    }
   }
 }
 

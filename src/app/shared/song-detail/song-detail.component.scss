@@ -1,11 +1,14 @@
 :host{
+  --border-radius: 20px;
+  --tab-width: 10em;
+  --header-font-size: 32px;
   display: block;
   width: 80vw;
   height: calc(100vh - 37vmin);
   background-color: var(--pop-up-color, var(--color6));
   transition: background-color 0.5s ease-in-out;
-  border-top-left-radius: 80px 32px;
-  border-top-right-radius: 80px 32px;
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
   will-change: background-color;
 
   position: absolute;
@@ -14,68 +17,77 @@
   padding: 40px;
   box-shadow: 0px 0px 190px -70px var(--color2);
 
-  @media only screen and (max-width: 800px) {
+  @media only screen and (max-width: 768px) {
+    --border-radius: 10px;
+    --tab-width: 10em;
+    --header-font-size: 20px;
+
     padding: 20px;
     left: 10px;
     width: calc(100vw - 20px);
   }
 }
 
-h1 {
-  font: 550 32px/2 Crimsons-Regular;
-  position: absolute;
-  top: -2em;
-  left: calc(50% - 5em);
-  width: 10em;
+header {
   background-color: var(--pop-up-color, var(--color6));
-  will-change: background-color;
-  transition: background-color 0.5s ease-in-out;
-  border-top-left-radius: 50% 100%;
-  border-top-right-radius: 50% 100%;
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
+  display: flex;
+  font: 550 calc(var(--header-font-size) + 0.7vw)/2.5 Crimsons-Regular;
+  gap: 8px;
+  left: calc(50% - (var(--tab-width) / 2));
+  padding: 0 8px;
+  position: absolute;
   text-align: center;
-  padding-top: 1em;
+  top: -2.1em;
+  transition: background-color 0.5s ease-in-out;
+  width: var(--tab-width);
+  will-change: background-color;
+}
+
+h1 {
   color: var(--color6);
+  flex: 1 1 auto;
 }
 
-.button-next {
-  position: absolute;
-  right: calc(50% - 25vw);
-  top: -150px;
-  transform: rotate(30deg);
-  z-index: 1;
-}
-
-.button-prev {
-  left: calc(50% - 25vw);
-  position: absolute;
-  top: -150px;
-  transform: rotate(330deg);
-  z-index: 1;
+button {
+  flex: 0 0 32px;
 }
 
 button svg{
-  width: 50px;
-  height: 50px;
-  fill: var(--color2);
+  width: 32px;
+  height: 32px;
+  fill: #fff;
+  opacity: 0.6 ;
+}
+button:hover svg {
+  opacity: 0.8;
 }
 
 a {
   position: absolute;
   right: 40px;
-  top: 24px;
+  top: 28px;
   display: flex;
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
-  background: var(--color3);
+  width: 24px;
+  height: 24px;
   justify-content: center;
   align-items: center;
+
+  @media only screen and (max-width: 768px) {
+    right: 20px;
+    top: 20px;
+  }
 }
 
 a svg{
-  width: 16px;
-  height: 16px;
-  fill: var(--color6);
+  width: 24px;
+  height: 24px;
+  fill: #fff;
+  opacity: 0.6 ;
+}
+button:hover svg {
+  opacity: 0.8;
 }
 
 section {
@@ -90,14 +102,20 @@ section {
     display: grid;
     grid-template-areas:
       "lyrics video"
-      "lyrics credits";
+      "lyrics credits"
+      "lyrics podcast";
     grid-template-columns: 1fr 330px;
-    grid-template-rows: 186px 1fr;
+    grid-template-rows: min-content min-content 1fr;
     gap: 16px;
   }
 
+  @media only screen and (min-width: 1320px) {
+    grid-template-columns: 1fr 50%;
+  }
+
+
   .credits {
-    font-size: calc(12px + 0.5vw);
+    font-size: calc(10px + 0.5vw);
     grid-area: credits;
     line-height: calc(1.1em + 0.5vw);
     margin-bottom: 0.5em;
@@ -107,13 +125,23 @@ section {
     grid-area: lyrics;
 
     ::ng-deep p {
-      font-size: calc(14px + 0.7vw);
+      font-size: calc(12px + 0.7vw);
       line-height: calc(1.1em + 0.5vw);
       margin-bottom: 1em;
     }
   }
+
+  app-youtube.song {
+   grid-area: video;
+  }
+  app-youtube.podcast {
+    grid-area: podcast;
+   }
+
   app-youtube {
-    grid-area: video;
+    @media only screen and (max-width: 768px) {
+      margin-bottom: 24px;
+    }
   }
 }
 

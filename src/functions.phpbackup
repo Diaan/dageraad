@@ -1,0 +1,46 @@
+<?php require_once(get_template_directory().'/includes/classes/iron_croma.class.php');
+// Setup Theme
+Iron_Croma::setup();
+
+function croma_fs() {
+	    global $croma_fs;
+
+	    if ( ! isset( $croma_fs ) ) {
+	        // Include Freemius SDK.
+	        require_once(get_template_directory(). '/freemius/start.php');
+
+	        $croma_fs = fs_dynamic_init( array(
+	            'id'                  => '886',
+	            'slug'                => 'croma',
+	            'type'                => 'theme',
+	            'public_key'          => 'pk_6ff435d0b4f48b6ed84b7ac819ccd',
+	            'is_premium'          => false,
+	            'has_premium_version' => false,
+	            'has_addons'          => false,
+	            'has_paid_plans'      => false,
+	        ) );
+	    }
+
+	    return $croma_fs;
+}
+
+croma_fs();
+
+// The object type. For custom post types, this is 'post';
+// for custom comment types, this is 'comment'. For user meta,
+// this is 'user'.
+$object_type = 'post';
+$args1 = array( // Validate and sanitize the meta value.
+    // Note: currently (4.7) one of 'string', 'boolean', 'integer',
+    // 'number' must be used as 'type'. The default is 'string'.
+    'type'         => 'string',
+    // Shown in the schema for the meta key.
+    'description'  => 'A meta key associated with a string meta value.',
+    // Return a single value of the type.
+    'single'       => true,
+    // Show in the WP REST API response. Default: false.
+    'show_in_rest' => true,
+);
+register_meta( $object_type, 'video', $args1 );
+register_meta( $object_type, 'credits', $args1 );
+register_meta( $object_type, 'podcast', $args1 );
