@@ -192,6 +192,7 @@ export class SongsService {
           wpId: page.id,
           text: page.content.rendered,
           videoId: page.meta.video,
+          podcastId: page.meta.podcast,
           spotify: page.meta.spotify,
           credits: page.meta.credits,
           links
