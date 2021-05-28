@@ -1,3 +1,4 @@
+import { InstructionService } from './core/instruction.service';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { trigger, transition, query, style, animate } from '@angular/animations';
@@ -30,6 +31,15 @@ import { trigger, transition, query, style, animate } from '@angular/animations'
 })
 
 export class AppComponent {
+
+  get showInstruction() {
+    return this.instructionService.showInstruction;
+  }
+
+  constructor(private instructionService: InstructionService) {
+
+  }
+
   prepareRoute(outlet: RouterOutlet) {
     return outlet && outlet.activatedRouteData && outlet.activatedRouteData.animation;
   }

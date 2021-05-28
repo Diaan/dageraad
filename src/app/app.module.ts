@@ -11,6 +11,7 @@ import { SpotifyComponent } from './shared/spotify/spotify.component';
 import { RouterModule, Routes } from '@angular/router';
 import { SongResolver } from './core/songs-resolver.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { InstructionComponent } from './shared/instruction/instruction.component';
 
 const routes: Routes = [
   {
@@ -27,7 +28,8 @@ const routes: Routes = [
     WheelComponent,
     YoutubeComponent,
     SongDetailComponent,
-    SpotifyComponent
+    SpotifyComponent,
+    InstructionComponent
   ],
   imports: [
     BrowserModule,
