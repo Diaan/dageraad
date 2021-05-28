@@ -1,3 +1,4 @@
+import { InstructionService } from './../../core/instruction.service';
 import { Component, OnInit, HostBinding, Input, ElementRef, OnChanges, ViewChild } from '@angular/core';
 import { SongsService } from 'src/app/core/songs.service';
 import { Observable } from 'rxjs';
@@ -31,6 +32,7 @@ export class WheelComponent implements OnInit, OnChanges {
   constructor(
     private songsService: SongsService,
     private router: Router,
+    private instructionService: InstructionService,
     private element: ElementRef<HTMLElement>
   ) { }
 
@@ -50,6 +52,7 @@ export class WheelComponent implements OnInit, OnChanges {
   }
 
   navigateTo(song: Song) {
+    this.instructionService.songClicked();
     this.router.navigate(['/song', song.slug]);
   }
 

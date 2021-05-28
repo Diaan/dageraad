@@ -1,0 +1,24 @@
+:host {
+  position: absolute;
+  z-index: 4;
+  top: 50%;
+  left: 50%;
+  display: block;
+  width: 170px;
+  transform: translateX(-50vmin) translateY(-50vmin);
+}
+
+div {
+  transform: rotate(325deg);
+  transform-origin: bottom right;
+  font-size: 0.7em;
+  line-height: 1;
+  text-align: center;
+
+  svg {
+    fill: var(--color2);
+    height: 60px;
+    margin-top: 18px;
+    transform: rotate(17deg);
+  }
+}
