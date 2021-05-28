@@ -6,6 +6,21 @@
   display: block;
   width: 170px;
   transform: translateX(-50vmin) translateY(-50vmin);
+
+  @media only screen and (max-width: 768px) {
+    transform: none;
+    top: 8px;
+    left: 8px;
+    width: calc(50% - 16px);
+
+    div {
+      font-size: 0.6em;
+      transform: rotate(0deg);
+      svg {
+        height: 40px;
+      }
+    }
+  }
 }
 
 div {
@@ -22,3 +37,5 @@ div {
     transform: rotate(17deg);
   }
 }
+
+
